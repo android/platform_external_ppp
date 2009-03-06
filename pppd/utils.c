@@ -662,7 +662,12 @@ logit(level, fmt, args)
     char buf[1024];
 
     n = vslprintf(buf, sizeof(buf), fmt, args);
+
+#ifdef ANDROID_CHANGES
+    __android_log_write(level, LOG_TAG, buf);
+#else
     log_write(level, buf);
+#endif
 }
 
 static void
@@ -702,7 +707,7 @@ fatal __V((char *fmt, ...))
 #endif
 
 #ifdef ANDROID_CHANGES
-    __android_log_vprint(ANDROID_LOG_ERROR, LOG_TAG, fmt, pvar);
+	logit(ANDROID_LOG_ERROR, fmt, pvar);
 #else
     logit(LOG_ERR, fmt, pvar);
 #endif
@@ -728,7 +733,7 @@ error __V((char *fmt, ...))
 #endif
 
 #ifdef ANDROID_CHANGES
-    __android_log_vprint(ANDROID_LOG_ERROR, LOG_TAG, fmt, pvar);
+	logit(ANDROID_LOG_ERROR, fmt, pvar);
 #else
     logit(LOG_ERR, fmt, pvar);
 #endif
@@ -754,7 +759,7 @@ warn __V((char *fmt, ...))
 #endif
 
 #ifdef ANDROID_CHANGES
-    __android_log_vprint(ANDROID_LOG_WARN, LOG_TAG, fmt, pvar);
+	logit(ANDROID_LOG_WARN, fmt, pvar);
 #else
     logit(LOG_WARNING, fmt, pvar);
 #endif
@@ -779,7 +784,7 @@ notice __V((char *fmt, ...))
 #endif
 
 #ifdef ANDROID_CHANGES
-    __android_log_vprint(ANDROID_LOG_INFO, LOG_TAG, fmt, pvar);
+	logit(ANDROID_LOG_INFO, fmt, pvar);
 #else
     logit(LOG_NOTICE, fmt, pvar);
 #endif
@@ -803,7 +808,7 @@ info __V((char *fmt, ...))
 #endif
 
 #ifdef ANDROID_CHANGES
-    __android_log_vprint(ANDROID_LOG_INFO, LOG_TAG, fmt, pvar);
+	logit(ANDROID_LOG_INFO, fmt, pvar);
 #else
     logit(LOG_INFO, fmt, pvar);
 #endif
@@ -828,7 +833,7 @@ dbglog __V((char *fmt, ...))
 #endif
 
 #ifdef ANDROID_CHANGES
-    __android_log_vprint(ANDROID_LOG_DEBUG, LOG_TAG, fmt, pvar);
+	logit(ANDROID_LOG_DEBUG, fmt, pvar);
 #else
     logit(LOG_DEBUG, fmt, pvar);
 #endif
