@@ -1,4 +1,4 @@
-ifeq ($(TARGET_ARCH),arm)
+ifneq (,$(filter $(TARGET_ARCH),arm mips))
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
