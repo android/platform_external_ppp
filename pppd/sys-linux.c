@@ -147,7 +147,7 @@
 #endif
 
 #ifdef INET6
-#ifndef _LINUX_IN6_H
+#if 1//ndef _LINUX_IN6_H
 /*
  *    This is in linux/include/net/ipv6.h.
  */
@@ -157,7 +157,24 @@ struct in6_ifreq {
     __u32 ifr6_prefixlen;
     unsigned int ifr6_ifindex;
 };
+
 #endif
+
+
+
+struct in6_rtmsg {
+	struct in6_addr		rtmsg_dst;
+	struct in6_addr		rtmsg_src;
+	struct in6_addr		rtmsg_gateway;
+	__u32			rtmsg_type;
+	__u16			rtmsg_dst_len;
+	__u16			rtmsg_src_len;
+	__u32			rtmsg_metric;
+	unsigned long		rtmsg_info;
+        __u32			rtmsg_flags;
+	int			rtmsg_ifindex;
+};
+
 
 #define IN6_LLADDR_FROM_EUI64(sin6, eui64) do {			\
 	memset(&sin6.s6_addr, 0, sizeof(struct in6_addr));	\
@@ -317,9 +334,13 @@ void sys_init(void)
 #ifdef INET6
     sock6_fd = socket(AF_INET6, SOCK_DGRAM, 0);
     if (sock6_fd < 0)
+	{
+	 warn("-----wjin:create sock6_fd fail,sock6_fd=%d\n",sock6_fd);
 	sock6_fd = -errno;	/* save errno for later */
+	}
 #endif
 
+	 warn("-----wjin:create sock6_fd successfully,sock6_fd=%d\n",sock6_fd);
     FD_ZERO(&in_fds);
     max_in_fd = 0;
 }
@@ -1015,7 +1036,7 @@ void output (int unit, unsigned char *p, int len)
     int fd = ppp_fd;
     int proto;
 
-    dump_packet("sent", p, len);
+    dump_packet("            \r\n ================= sent", p, len);
     if (snoop_send_hook) snoop_send_hook(p, len);
 
     if (len < PPP_HDRLEN)

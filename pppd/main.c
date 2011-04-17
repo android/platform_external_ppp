@@ -333,6 +333,9 @@ main(argc, argv)
     }
     hostname[MAXNAMELEN-1] = 0;
 
+	option_error("========IPV6 SUPPORT==========");
+	option_error("====================================================");
+
     /* make sure we don't create world or group writable files. */
     umask(umask(0777) | 022);
 
@@ -1035,7 +1038,7 @@ get_input()
 	return;
     }
 
-    dump_packet("rcvd", p, len);
+    dump_packet("            \r\n ================= rcvd", p, len);
     if (snoop_recv_hook) snoop_recv_hook(p, len);
 
     p += 2;				/* Skip address and control */
