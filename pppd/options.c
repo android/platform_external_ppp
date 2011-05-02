@@ -86,8 +86,8 @@ struct option_value {
 /*
  * Option variables and default values.
  */
-int	debug = 0;		/* Debug flag */
-int	kdebugflag = 0;		/* Tell kernel to print debug messages */
+int	debug = 1;		/* Debug flag */
+int	kdebugflag = 1;		/* Tell kernel to print debug messages */
 int	default_device = 1;	/* Using /dev/tty or equivalent */
 char	devnam[MAXPATHLEN];	/* Device name */
 bool	nodetach = 0;		/* Don't detach from controlling tty */

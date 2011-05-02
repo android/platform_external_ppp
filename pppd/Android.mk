@@ -24,6 +24,8 @@ LOCAL_SRC_FILES:= \
 	chap-md5.c \
 	pppcrypt.c \
 	openssl-hash.c \
+	ipv6cp.c \
+	eui64.c \
 	pppox.c
 
 LOCAL_SHARED_LIBRARIES := \
@@ -32,7 +34,7 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/include
 
-LOCAL_CFLAGS := -DANDROID_CHANGES -DCHAPMS=1 -DMPPE=1 -Iexternal/openssl/include
+LOCAL_CFLAGS := -DANDROID_CHANGES -DCHAPMS=1 -DMPPE=1 -Iexternal/openssl/include -DINET6
 
 LOCAL_MODULE:= pppd
 
