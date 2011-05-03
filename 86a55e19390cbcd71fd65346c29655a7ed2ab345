@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAA/3//++A\u003d",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "I don\u0027t think this is an error.",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/3//+98\u003d",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "we probably don\u0027t want to deviate from the standard source in needless ways.  The old dump_packet line was probably sufficient.",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/3//+9o\u003d",
+        "filename": "pppd/options.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "we don\u0027t want debug or kdebug turned on in shipping releases.  please turn it off before submitting.",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/3//+94\u003d",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "We probably don\u0027t want this hack",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/3//+9s\u003d",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "inlining this definition is not the right way to fix this.  It looks like this is defined in ipv6_route.h and presumably pppd code should be pulling that in.  Please look into the proper way to pull in this definition.",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/3//+90\u003d",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "please restore",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAA/3//+9w\u003d",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2585,
+      "author": {
+        "id": 1002609
+      },
+      "writtenOn": "2011-05-03T17:17:45Z",
+      "side": 1,
+      "message": "please explain this change.",
+      "revId": "86a55e19390cbcd71fd65346c29655a7ed2ab345",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
