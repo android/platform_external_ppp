@@ -1,0 +1,8 @@
+Change-Id: I09d1d0ff1548e08e6b4c182c0adb193ed475fc47
+Code-Review+2: Jean-Baptiste Queru <jbq@google.com>
+Verified+1: Jean-Baptiste Queru <jbq@google.com>
+Submitted-by: Jean-Baptiste Queru <jbq@google.com>
+Submitted-at: Wed, 18 Mar 2009 14:03:06 -0700
+Reviewed-on: https://review.source.android.com/9213
+Project: platform/external/ppp
+Branch: refs/heads/master
