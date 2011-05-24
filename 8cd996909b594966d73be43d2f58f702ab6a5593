@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAABBn///8s\u003d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001401
+      },
+      "writtenOn": "2011-05-24T03:26:06Z",
+      "side": 1,
+      "message": "The first sentence should be short about 50 characters. That should be followed by a blank line then the body of the commit message.",
+      "revId": "8cd996909b594966d73be43d2f58f702ab6a5593",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
