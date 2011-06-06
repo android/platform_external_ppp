@@ -147,6 +147,8 @@
 #endif
 
 #ifdef INET6
+#include <linux/ipv6.h>
+#include <linux/ipv6_route.h>
 #ifndef _LINUX_IN6_H
 /*
  *    This is in linux/include/net/ipv6.h.
