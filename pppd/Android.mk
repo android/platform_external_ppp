@@ -1,5 +1,3 @@
-ifeq ($(TARGET_ARCH),arm)
-
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
@@ -37,5 +35,3 @@ LOCAL_CFLAGS := -DANDROID_CHANGES -DCHAPMS=1 -DMPPE=1 -Iexternal/openssl/include
 LOCAL_MODULE:= pppd
 
 include $(BUILD_EXECUTABLE)
-
-endif
