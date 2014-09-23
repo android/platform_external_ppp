@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50859788_a0765a55",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-09-23T23:16:48Z",
+      "side": 1,
+      "message": "This allows actual errors to be noticed, rather than drowned in noise. However, future compiler updates could add more warnings and break the build. Thus it would be reasonable to ask that it be removed if you judge that to be worse than the possible benefit of catching something.",
+      "range": {
+        "startLine": 32,
+        "startChar": 203,
+        "endLine": 32,
+        "endChar": 210
+      },
+      "revId": "70427e4c8510a1463dbbf7cfb24b318b2acba5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
