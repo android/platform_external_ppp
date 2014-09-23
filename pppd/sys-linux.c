@@ -94,6 +94,16 @@
 #include <unistd.h>
 #include <paths.h>
 
+#if defined(ANDROID_CHANGES)
+/* The utmp.h functions that this code uses are obsolete and have been since
+ * POSIX 2001. They have been replaced with utmpx.h, but Android doesn't
+ * provide that. But, even with utmp.h, it doesn't appear to declare pututline
+ * and endutent. */
+
+struct utmp *pututline(struct utmp *ut);
+void endutent(void);
+#endif
+
 /* This is in netdevice.h. However, this compile will fail miserably if
    you attempt to include netdevice.h because it has so many references
    to __memcpy functions which it should not attempt to do. So, since I

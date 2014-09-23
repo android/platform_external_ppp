@@ -21,7 +21,6 @@ LOCAL_SRC_FILES:= \
 	eap.c \
 	chap-md5.c \
 	pppcrypt.c \
-	openssl-hash.c \
 	pppox.c
 
 LOCAL_SHARED_LIBRARIES := \
@@ -30,7 +29,7 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/include
 
-LOCAL_CFLAGS := -DANDROID_CHANGES -DCHAPMS=1 -DMPPE=1 -Iexternal/openssl/include
+LOCAL_CFLAGS := -DANDROID_CHANGES -DCHAPMS=1 -DMPPE=1 -Iexternal/openssl/include -Wno-unused-parameter -Wno-empty-body -Wno-missing-field-initializers -Wno-attributes -Wno-sign-compare -Wno-pointer-sign -Werror
 
 LOCAL_MODULE:= pppd
 

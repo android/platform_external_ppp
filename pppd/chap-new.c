@@ -144,9 +144,6 @@ chap_init(int unit)
 	memset(&client, 0, sizeof(client));
 	memset(&server, 0, sizeof(server));
 
-#ifdef ANDROID_CHANGES
-	openssl_hash_init();
-#endif
 	chap_md5_init();
 #ifdef CHAPMS
 	chapms_init();

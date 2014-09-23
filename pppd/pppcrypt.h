@@ -37,10 +37,8 @@
 #include <crypt.h>
 #endif
 
+#if !defined(ANDROID_CHANGES)
 #ifndef USE_CRYPT
-#ifdef ANDROID_CHANGES
-#include <openssl/des.h>
-#else
 #include <des.h>
 #endif
 #endif

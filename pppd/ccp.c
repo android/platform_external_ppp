@@ -898,6 +898,9 @@ ccp_nakci(f, p, len, treat_as_reject)
     fsm *f;
     u_char *p;
     int len;
+#if defined(ANDROID_CHANGES)
+    int treat_as_reject;
+#endif
 {
     ccp_options *go = &ccp_gotoptions[f->unit];
     ccp_options no;		/* options we've seen already */
