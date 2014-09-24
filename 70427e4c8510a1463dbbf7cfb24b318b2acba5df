@@ -22,6 +22,23 @@
       "revId": "70427e4c8510a1463dbbf7cfb24b318b2acba5df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7080db79_5b0adb44",
+        "filename": "pppd/ccp.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-09-24T03:22:23Z",
+      "side": 1,
+      "message": "this has already been fixed upstream. did you look at fixing upstream and then upgrading us? otherwise we\u0027re likely to clobber any changes you make locally.",
+      "revId": "70427e4c8510a1463dbbf7cfb24b318b2acba5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
