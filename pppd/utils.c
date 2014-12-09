@@ -28,7 +28,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define RCSID	"$Id: utils.c,v 1.24 2004/11/04 10:02:26 paulus Exp $"
+#define RCSID	"$Id: utils.c,v 1.25 2008/06/03 12:06:37 paulus Exp $"
 #define LOG_TAG "pppd"
 
 #include <stdio.h>
@@ -73,8 +73,7 @@ extern char *strerror();
 static void logit __P((int, char *, va_list));
 static void log_write __P((int, char *));
 static void vslp_printer __P((void *, char *, ...));
-static void format_packet __P((u_char *, int, void (*) (void *, char *, ...),
-			       void *));
+static void format_packet __P((u_char *, int, printer_func, void *));
 
 struct buffer_info {
     char *ptr;
@@ -244,8 +243,8 @@ vslprintf(buf, buflen, fmt, args)
 		base = 10;
 		break;
 	    default:
-		*buf++ = '%'; --buflen;
-		*buf++ = 'l'; --buflen;
+		OUTCHAR('%');
+		OUTCHAR('l');
 		--fmt;		/* so %lz outputs %lz etc. */
 		continue;
 	    }
@@ -295,19 +294,6 @@ vslprintf(buf, buflen, fmt, args)
 		     (ip >> 16) & 0xff, (ip >> 8) & 0xff, ip & 0xff);
 	    str = num;
 	    break;
-#if 0	/* not used, and breaks on S/390, apparently */
-	case 'r':
-	    f = va_arg(args, char *);
-#ifndef __powerpc__
-	    n = vslprintf(buf, buflen + 1, f, va_arg(args, va_list));
-#else
-	    /* On the powerpc, a va_list is an array of 1 structure */
-	    n = vslprintf(buf, buflen + 1, f, va_arg(args, void *));
-#endif
-	    buf += n;
-	    buflen -= n;
-	    continue;
-#endif
 	case 't':
 	    time(&t);
 	    str = ctime(&t);
@@ -318,6 +304,8 @@ vslprintf(buf, buflen, fmt, args)
 	case 'q':		/* quoted string */
 	    quoted = c == 'q';
 	    p = va_arg(args, unsigned char *);
+	    if (p == NULL)
+		    p = (unsigned char *)"<NULL>";
 	    if (fillch == '0' && prec >= 0) {
 		n = prec;
 	    } else {
@@ -483,7 +471,7 @@ static void
 format_packet(p, len, printer, arg)
     u_char *p;
     int len;
-    void (*printer) __P((void *, char *, ...));
+    printer_func printer;
     void *arg;
 {
     int i, n;
@@ -535,7 +523,7 @@ static int llevel;		/* level for logging */
 
 void
 init_pr_log(prefix, level)
-     char *prefix;
+     const char *prefix;
      int level;
 {
 	linep = line;
@@ -621,7 +609,7 @@ void
 print_string(p, len, printer, arg)
     char *p;
     int len;
-    void (*printer) __P((void *, char *, ...));
+    printer_func printer;
     void *arg;
 {
     int c;
@@ -661,10 +649,9 @@ logit(level, fmt, args)
     char *fmt;
     va_list args;
 {
-    int n;
     char buf[1024];
 
-    n = vslprintf(buf, sizeof(buf), fmt, args);
+    vslprintf(buf, sizeof(buf), fmt, args);
     log_write(level, buf);
 }
 

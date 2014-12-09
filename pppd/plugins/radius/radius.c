@@ -24,7 +24,7 @@
 *
 ***********************************************************************/
 static char const RCSID[] =
-"$Id: radius.c,v 1.28 2004/11/14 10:27:57 paulus Exp $";
+"$Id: radius.c,v 1.32 2008/05/26 09:18:08 paulus Exp $";
 
 #include "pppd.h"
 #include "chap-new.h"
@@ -47,6 +47,8 @@ static char const RCSID[] =
 #define BUF_LEN 1024
 
 #define MD5_HASH_SIZE	16
+
+#define MSDNS 1
 
 static char *config_file = NULL;
 static int add_avp(char **);
@@ -410,18 +412,14 @@ radius_chap_verify(char *user, char *ourname, int id,
     case CHAP_MICROSOFT:
     {
 	/* MS-CHAP-Challenge and MS-CHAP-Response */
-	MS_ChapResponse *rmd = (MS_ChapResponse *) response;
 	u_char *p = cpassword;
 
 	if (response_len != MS_CHAP_RESPONSE_LEN)
 	    return 0;
 	*p++ = id;
 	/* The idiots use a different field order in RADIUS than PPP */
-	memcpy(p, rmd->UseNT, sizeof(rmd->UseNT));
-	p += sizeof(rmd->UseNT);
-	memcpy(p, rmd->LANManResp, sizeof(rmd->LANManResp));
-	p += sizeof(rmd->LANManResp);
-	memcpy(p, rmd->NTResp, sizeof(rmd->NTResp));
+	*p++ = response[MS_CHAP_USENT];
+	memcpy(p, response, MS_CHAP_LANMANRESP_LEN + MS_CHAP_NTRESP_LEN);
 
 	rc_avpair_add(&send, PW_MS_CHAP_CHALLENGE,
 		      challenge, challenge_len, VENDOR_MICROSOFT);
@@ -433,20 +431,15 @@ radius_chap_verify(char *user, char *ourname, int id,
     case CHAP_MICROSOFT_V2:
     {
 	/* MS-CHAP-Challenge and MS-CHAP2-Response */
-	MS_Chap2Response *rmd = (MS_Chap2Response *) response;
 	u_char *p = cpassword;
 
 	if (response_len != MS_CHAP2_RESPONSE_LEN)
 	    return 0;
 	*p++ = id;
 	/* The idiots use a different field order in RADIUS than PPP */
-	memcpy(p, rmd->Flags, sizeof(rmd->Flags));
-	p += sizeof(rmd->Flags);
-	memcpy(p, rmd->PeerChallenge, sizeof(rmd->PeerChallenge));
-	p += sizeof(rmd->PeerChallenge);
-	memcpy(p, rmd->Reserved, sizeof(rmd->Reserved));
-	p += sizeof(rmd->Reserved);
-	memcpy(p, rmd->NTResp, sizeof(rmd->NTResp));
+	*p++ = response[MS_CHAP2_FLAGS];
+	memcpy(p, response, (MS_CHAP2_PEER_CHAL_LEN + MS_CHAP2_RESERVED_LEN
+			     + MS_CHAP2_NTRESP_LEN));
 
 	rc_avpair_add(&send, PW_MS_CHAP_CHALLENGE,
 		      challenge, challenge_len, VENDOR_MICROSOFT);
@@ -479,6 +472,8 @@ radius_chap_verify(char *user, char *ourname, int id,
 	result = rc_auth(rstate.client_port, send, &received, radius_msg,
 			 req_info);
     }
+
+    strlcpy(message, radius_msg, message_space);
 
     if (result == OK_RC) {
 	if (!rstate.done_chap_once) {
@@ -550,6 +545,14 @@ radius_setparams(VALUE_PAIR *vp, char *msg, REQUEST_INFO *req_info,
     int mppe_enc_policy = 0;
     int mppe_enc_types = 0;
 #endif
+#ifdef MSDNS
+    ipcp_options *wo = &ipcp_wantoptions[0];
+    ipcp_options *ao = &ipcp_allowoptions[0];
+    int got_msdns_1 = 0;
+    int got_msdns_2 = 0;
+    int got_wins_1 = 0;
+    int got_wins_2 = 0;
+#endif
 
     /* Send RADIUS attributes to anyone else who might be interested */
     if (radius_attributes_hook) {
@@ -588,6 +591,18 @@ radius_setparams(VALUE_PAIR *vp, char *msg, REQUEST_INFO *req_info,
 		/* Session timeout */
 		maxconnect = vp->lvalue;
 		break;
+           case PW_FILTER_ID:
+               /* packet filter, will be handled via ip-(up|down) script */
+               script_setenv("RADIUS_FILTER_ID", vp->strvalue, 1);
+               break;
+           case PW_FRAMED_ROUTE:
+               /* route, will be handled via ip-(up|down) script */
+               script_setenv("RADIUS_FRAMED_ROUTE", vp->strvalue, 1);
+               break;
+           case PW_IDLE_TIMEOUT:
+               /* idle parameter */
+               idle_time_limit = vp->lvalue;
+               break;
 #ifdef MAXOCTETS
 	    case PW_SESSION_OCTETS_LIMIT:
 		/* Session traffic limit */
@@ -626,6 +641,9 @@ radius_setparams(VALUE_PAIR *vp, char *msg, REQUEST_INFO *req_info,
 		    rstate.ip_addr = remote;
 		}
 		break;
+            case PW_NAS_IP_ADDRESS:
+                wo->ouraddr = htonl(vp->lvalue);
+                break;
 	    case PW_CLASS:
 		/* Save Class attribute to pass it in accounting request */
 		if (vp->lvalue <= MAXCLASSLEN) {
@@ -636,8 +654,8 @@ radius_setparams(VALUE_PAIR *vp, char *msg, REQUEST_INFO *req_info,
 	    }
 
 
-#ifdef CHAPMS
 	} else if (vp->vendorcode == VENDOR_MICROSOFT) {
+#ifdef CHAPMS
 	    switch (vp->attribute) {
 	    case PW_MS_CHAP2_SUCCESS:
 		if ((vp->lvalue != 43) || strncmp(vp->strvalue + 1, "S=", 2)) {
@@ -680,13 +698,32 @@ radius_setparams(VALUE_PAIR *vp, char *msg, REQUEST_INFO *req_info,
 		break;
 
 #endif /* MPPE */
-#if 0
+#ifdef MSDNS
 	    case PW_MS_PRIMARY_DNS_SERVER:
-	    case PW_MS_SECONDARY_DNS_SERVER:
-	    case PW_MS_PRIMARY_NBNS_SERVER:
-	    case PW_MS_SECONDARY_NBNS_SERVER:
+		ao->dnsaddr[0] = htonl(vp->lvalue);
+		got_msdns_1 = 1;
+		if (!got_msdns_2)
+		    ao->dnsaddr[1] = ao->dnsaddr[0];
 		break;
-#endif
+	    case PW_MS_SECONDARY_DNS_SERVER:
+		ao->dnsaddr[1] = htonl(vp->lvalue);
+		got_msdns_2 = 1;
+		if (!got_msdns_1)
+		    ao->dnsaddr[0] = ao->dnsaddr[1];
+		break;
+	    case PW_MS_PRIMARY_NBNS_SERVER:
+		ao->winsaddr[0] = htonl(vp->lvalue);
+		got_wins_1 = 1;
+		if (!got_wins_2)
+		    ao->winsaddr[1] = ao->winsaddr[0];
+		break;
+	    case PW_MS_SECONDARY_NBNS_SERVER:
+		ao->winsaddr[1] = htonl(vp->lvalue);
+		got_wins_2 = 1;
+		if (!got_wins_1)
+		    ao->winsaddr[0] = ao->winsaddr[1];
+		break;
+#endif /* MSDNS */
 	    }
 #endif /* CHAPMS */
 	}
@@ -950,6 +987,9 @@ radius_acct_stop(void)
 	return;
     }
 
+    if (rstate.acct_interim_interval)
+	UNTIMEOUT(radius_acct_interim, NULL);
+
     rstate.accounting_started = 0;
     rc_avpair_add(&send, PW_ACCT_SESSION_ID, rstate.session_id,
 		   0, VENDOR_NONE);
@@ -1026,6 +1066,10 @@ radius_acct_stop(void)
 	    av_type = PW_ACCT_IDLE_TIMEOUT;
 	    break;
 
+	case EXIT_CALLBACK:
+	    av_type = PW_CALLBACK;
+	    break;
+	    
 	case EXIT_CONNECT_TIME:
 	    av_type = PW_ACCT_SESSION_TIMEOUT;
 	    break;
