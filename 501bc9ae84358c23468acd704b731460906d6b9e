@@ -1,0 +1,197 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4521a4f_b80c3960",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "you could just use __ANDROID__ there. it would be nice to get this upstream, and that\u0027s presumably what they\u0027d want to use.",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_38402965",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "if you diff this against your clean upstream tree, every change has ANDROID_CHANGES in it now?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24a8ea5a_4d9431d4",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "presumably we can remove this since there\u0027s the unconditional closelog above?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24a8ea5a_ad24c517",
+        "filename": "pppd/patchlevel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "a decade out of date? nice.",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64ae6267_cfced53f",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "we do have this.",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44ab1e57_2bbc3d5d",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "and this.",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44ab1e57_6b1f95d1",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "should HAVE_LOGWTMP have been in here? or isn\u0027t that handled by configure?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4346e09_c15942d2",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "or _UAPI_LINUX_IN6_H --- we have the UAPI version of this same file. makes me wonder whether we should change our uapi import script to rename all these include guards...",
+      "range": {
+        "startLine": 151,
+        "startChar": 39,
+        "endLine": 151,
+        "endChar": 54
+      },
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4393a03_408ece14",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "i think i should just add this to \u003cnet/route.h\u003e, no? https://android-review.googlesource.com/118521",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c45d4e61_f98cf75e",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2170,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "but you #defined HAVE_LOGWTMP to 1. this is a bit confusing. it looks like they have USE_* macros too, so how about changing this to USE_LOGWTMP?\n\nor simplest, just\n\n  #if defined(__ANDROID__)\n  void logwtmp (const char *line, const char *name, const char *host) {}\n  #else\n  ...upstream code...\n  #endif\n\n?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c45d4e61_59cc0398",
+        "filename": "pppd/tty.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-09T23:17:53Z",
+      "side": 1,
+      "message": "why? presumably the code is single-threaded at this point or they\u0027d be broken on glibc too?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
