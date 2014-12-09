@@ -1,7 +1,7 @@
 /*
  * ecp.c - PPP Encryption Control Protocol.
  *
- * Copyright (c) 2002 The Android Open Source Project
+ * Copyright (c) 2002 Google, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

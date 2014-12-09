@@ -90,10 +90,10 @@
 /* #undef HAVE_NET_IF_DL_H */
 
 /* Define if you have the <net/if_ether.h> header file.  */
-/* #undef HAVE_NET_IF_ETHER_H */
+#define HAVE_NET_IF_ETHER_H 1
 
 /* Define if you have the <net/if_types.h> header file.  */
-/* #undef HAVE_NET_IF_TYPES_H */
+#define HAVE_NET_IF_TYPES_H 1
 
 /* Define if you have the <netinet/if_ether.h> header file.  */
 #define HAVE_NETINET_IF_ETHER_H 1
@@ -130,6 +130,3 @@
 
 /* Define if you have the N_HDLC line discipline in linux/termios.h */
 #define HAVE_N_HDLC 1
-
-/* Define if bitfields are packed in reverse order */
-#define PACK_BITFIELDS_REVERSED 1

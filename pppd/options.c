@@ -40,7 +40,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define RCSID	"$Id: options.c,v 1.95 2004/11/09 22:33:35 paulus Exp $"
+#define RCSID	"$Id: options.c,v 1.102 2008/06/15 06:53:06 paulus Exp $"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -59,14 +59,19 @@
 #include <pcap.h>
 
 /*
- * DLT_PPP_WITH_DIRECTION is in current libpcap cvs, and should be in
- * libpcap-0.8.4.  Until that is released, use DLT_PPP - but that means
+ * There have been 3 or 4 different names for this in libpcap CVS, but
+ * this seems to be what they have settled on...
+ * For older versions of libpcap, use DLT_PPP - but that means
  * we lose the inbound and outbound qualifiers.
  */
-#ifndef DLT_PPP_WITH_DIRECTION
-#define DLT_PPP_WITH_DIRECTION	DLT_PPP
+#ifndef DLT_PPP_PPPD
+#ifdef DLT_PPP_WITHDIRECTION
+#define DLT_PPP_PPPD	DLT_PPP_WITHDIRECTION
+#else
+#define DLT_PPP_PPPD	DLT_PPP
 #endif
 #endif
+#endif /* PPP_FILTER */
 
 #include "pppd.h"
 #include "pathnames.h"
@@ -92,6 +97,7 @@ int	default_device = 1;	/* Using /dev/tty or equivalent */
 char	devnam[MAXPATHLEN];	/* Device name */
 bool	nodetach = 0;		/* Don't detach from controlling tty */
 bool	updetach = 0;		/* Detach once link is up */
+bool	master_detach;		/* Detach when we're (only) multilink master */
 int	maxconnect = 0;		/* Maximum connect time */
 char	user[MAXNAMELEN];	/* Username for PAP */
 char	passwd[MAXSECRETLEN];	/* Password for PAP */
@@ -115,6 +121,7 @@ bool	dump_options;		/* print out option values */
 bool	dryrun;			/* print out option values and exit */
 char	*domain;		/* domain name set by domain option */
 int	child_wait = 5;		/* # seconds to wait for children at exit */
+struct userenv *userenv_list;	/* user environment variables */
 
 #ifdef MAXOCTETS
 unsigned int  maxoctets = 0;    /* default - no limit */
@@ -131,6 +138,7 @@ struct	bpf_program pass_filter;/* Filter program for packets to pass */
 struct	bpf_program active_filter; /* Filter program for link-active pkts */
 #endif
 
+static option_t *curopt;	/* pointer to option being processed */
 char *current_option;		/* the name of the option being parsed */
 int  privileged_option;		/* set iff the current option came from root */
 char *option_source;		/* string saying where the option came from */
@@ -162,6 +170,11 @@ static int setactivefilter __P((char **));
 #ifdef MAXOCTETS
 static int setmodir __P((char **));
 #endif
+
+static int user_setenv __P((char **));
+static void user_setprint __P((option_t *, printer_func, void *));
+static int user_unsetenv __P((char **));
+static void user_unsetprint __P((option_t *, printer_func, void *));
 
 static option_t *find_option __P((const char *name));
 static int process_option __P((option_t *, char *, char **));
@@ -198,6 +211,9 @@ option_t general_options[] = {
     { "updetach", o_bool, &updetach,
       "Detach from controlling tty once link is up",
       OPT_PRIOSUB | OPT_A2CLR | 1, &nodetach },
+
+    { "master_detach", o_bool, &master_detach,
+      "Detach when we're multilink master but have no link", 1 },
 
     { "holdoff", o_int, &holdoff,
       "Set time in seconds before retrying connection",
@@ -277,6 +293,13 @@ option_t general_options[] = {
       "Number of seconds to wait for child processes at exit",
       OPT_PRIO },
 
+    { "set", o_special, (void *)user_setenv,
+      "Set user environment variable",
+      OPT_A2PRINTER | OPT_NOPRINT, (void *)user_setprint },
+    { "unset", o_special, (void *)user_unsetenv,
+      "Unset user environment variable",
+      OPT_A2PRINTER | OPT_NOPRINT, (void *)user_unsetprint },
+
 #ifdef HAVE_MULTILINK
     { "multilink", o_bool, &multilink,
       "Enable multilink operation", OPT_PRIO | 1 },
@@ -297,10 +320,10 @@ option_t general_options[] = {
 #endif
 
 #ifdef PPP_FILTER
-    { "pass-filter", 1, setpassfilter,
+    { "pass-filter", o_special, setpassfilter,
       "set filter for packets to pass", OPT_PRIO },
 
-    { "active-filter", 1, setactivefilter,
+    { "active-filter", o_special, setactivefilter,
       "set filter for active pkts", OPT_PRIO },
 #endif
 
@@ -395,16 +418,20 @@ options_from_file(filename, must_exist, check_prot, priv)
     option_t *opt;
     int oldpriv, n;
     char *oldsource;
+    uid_t euid;
     char *argv[MAXARGS];
     char args[MAXARGS][MAXWORDLEN];
     char cmd[MAXWORDLEN];
 
-    if (check_prot)
-	seteuid(getuid());
+    euid = geteuid();
+    if (check_prot && seteuid(getuid()) == -1) {
+	option_error("unable to drop privileges to open %s: %m", filename);
+	return 0;
+    }
     f = fopen(filename, "r");
     err = errno;
-    if (check_prot)
-	seteuid(0);
+    if (check_prot && seteuid(euid) == -1)
+	fatal("unable to regain privileges");
     if (f == NULL) {
 	errno = err;
 	if (!must_exist) {
@@ -750,30 +777,37 @@ process_option(opt, cmd, argv)
 	if (opt->flags & OPT_STATIC) {
 	    strlcpy((char *)(opt->addr), *argv, opt->upper_limit);
 	} else {
+	    char **optptr = (char **)(opt->addr);
 	    sv = strdup(*argv);
 	    if (sv == NULL)
 		novm("option argument");
-	    *(char **)(opt->addr) = sv;
+	    if (*optptr)
+		free(*optptr);
+	    *optptr = sv;
 	}
 	break;
 
     case o_special_noarg:
     case o_special:
 	parser = (int (*) __P((char **))) opt->addr;
+	curopt = opt;
 	if (!(*parser)(argv))
 	    return 0;
 	if (opt->flags & OPT_A2LIST) {
-	    struct option_value *ovp, **pp;
+	    struct option_value *ovp, *pp;
 
 	    ovp = malloc(sizeof(*ovp) + strlen(*argv));
 	    if (ovp != 0) {
 		strcpy(ovp->value, *argv);
 		ovp->source = option_source;
 		ovp->next = NULL;
-		pp = (struct option_value **) &opt->addr2;
-		while (*pp != 0)
-		    pp = &(*pp)->next;
-		*pp = ovp;
+		if (opt->addr2 == NULL) {
+		    opt->addr2 = ovp;
+		} else {
+		    for (pp = opt->addr2; pp->next != NULL; pp = pp->next)
+			;
+		    pp->next = ovp;
+		}
 	    }
 	}
 	break;
@@ -785,6 +819,10 @@ process_option(opt, cmd, argv)
 	break;
     }
 
+    /*
+     * If addr2 wasn't used by any flag (OPT_A2COPY, etc.) but is set,
+     * treat it as a bool and set/clear it based on the OPT_A2CLR bit.
+     */
     if (opt->addr2 && (opt->flags & (OPT_A2COPY|OPT_ENABLE
 		|OPT_A2PRINTER|OPT_A2STRVAL|OPT_A2LIST|OPT_A2OR)) == 0)
 	*(bool *)(opt->addr2) = !(opt->flags & OPT_A2CLR);
@@ -866,7 +904,7 @@ check_options()
 static void
 print_option(opt, mainopt, printer, arg)
     option_t *opt, *mainopt;
-    void (*printer) __P((void *, char *, ...));
+    printer_func printer;
     void *arg;
 {
 	int i, v;
@@ -929,11 +967,8 @@ print_option(opt, mainopt, printer, arg)
 			printer(arg, " ");
 		}
 		if (opt->flags & OPT_A2PRINTER) {
-			void (*oprt) __P((option_t *,
-					  void ((*)__P((void *, char *, ...))),
-					  void *));
-			oprt = (void (*) __P((option_t *,
-					 void ((*)__P((void *, char *, ...))),
+			void (*oprt) __P((option_t *, printer_func, void *));
+			oprt = (void (*) __P((option_t *, printer_func,
 					 void *)))opt->addr2;
 			(*oprt)(opt, printer, arg);
 		} else if (opt->flags & OPT_A2STRVAL) {
@@ -971,7 +1006,7 @@ print_option(opt, mainopt, printer, arg)
 static void
 print_option_list(opt, printer, arg)
     option_t *opt;
-    void (*printer) __P((void *, char *, ...));
+    printer_func printer;
     void *arg;
 {
 	while (opt->name != NULL) {
@@ -989,7 +1024,7 @@ print_option_list(opt, printer, arg)
  */
 void
 print_options(printer, arg)
-    void (*printer) __P((void *, char *, ...));
+    printer_func printer;
     void *arg;
 {
 	struct option_list *list;
@@ -1065,11 +1100,11 @@ option_error __V((char *fmt, ...))
     va_end(args);
     if (phase == PHASE_INITIALIZE)
 	fprintf(stderr, "%s: %s\n", progname, buf);
-#ifndef ANDROID_CHANGES
+#if !defined(__ANDROID__)
     syslog(LOG_ERR, "%s", buf);
 #else
     error("%s", buf);
-#endif    
+#endif
 }
 
 #if 0
@@ -1123,6 +1158,7 @@ getword(f, word, newlinep, filename)
     len = 0;
     escape = 0;
     comment = 0;
+    quoted = 0;
 
     /*
      * First skip white-space and comments.
@@ -1179,15 +1215,6 @@ getword(f, word, newlinep, filename)
 	if (!isspace(c))
 	    break;
     }
-
-    /*
-     * Save the delimiter for quoted strings.
-     */
-    if (!escape && (c == '"' || c == '\'')) {
-        quoted = c;
-	c = getc(f);
-    } else
-        quoted = 0;
 
     /*
      * Process characters until the end of the word.
@@ -1270,31 +1297,18 @@ getword(f, word, newlinep, filename)
 	    /*
 	     * Store the resulting character for the escape sequence.
 	     */
-	    if (len < MAXWORDLEN-1)
+	    if (len < MAXWORDLEN) {
 		word[len] = value;
-	    ++len;
+		++len;
+	    }
 
 	    if (!got)
 		c = getc(f);
 	    continue;
-
 	}
 
 	/*
-	 * Not escaped: see if we've reached the end of the word.
-	 */
-	if (quoted) {
-	    if (c == quoted)
-		break;
-	} else {
-	    if (isspace(c) || c == '#') {
-		ungetc (c, f);
-		break;
-	    }
-	}
-
-	/*
-	 * Backslash starts an escape sequence.
+	 * Backslash starts a new escape sequence.
 	 */
 	if (c == '\\') {
 	    escape = 1;
@@ -1303,11 +1317,31 @@ getword(f, word, newlinep, filename)
 	}
 
 	/*
+	 * Not escaped: check for the start or end of a quoted
+	 * section and see if we've reached the end of the word.
+	 */
+	if (quoted) {
+	    if (c == quoted) {
+		quoted = 0;
+		c = getc(f);
+		continue;
+	    }
+	} else if (c == '"' || c == '\'') {
+	    quoted = c;
+	    c = getc(f);
+	    continue;
+	} else if (isspace(c) || c == '#') {
+	    ungetc (c, f);
+	    break;
+	}
+
+	/*
 	 * An ordinary character: store it in the word and get another.
 	 */
-	if (len < MAXWORDLEN-1)
+	if (len < MAXWORDLEN) {
 	    word[len] = c;
-	++len;
+	    ++len;
+	}
 
 	c = getc(f);
     }
@@ -1328,6 +1362,9 @@ getword(f, word, newlinep, filename)
 	 */
 	if (len == 0)
 	    return 0;
+	if (quoted)
+	    option_error("warning: quoted word runs to end of file (%.20s...)",
+			 filename, word);
     }
 
     /*
@@ -1452,13 +1489,13 @@ setpassfilter(argv)
     char **argv;
 {
     pcap_t *pc;
-    int ret = 0;
+    int ret = 1;
 
-    pc = pcap_open_dead(DLT_PPP_WITH_DIRECTION, 65535);
+    pc = pcap_open_dead(DLT_PPP_PPPD, 65535);
     if (pcap_compile(pc, &pass_filter, *argv, 1, netmask) == -1) {
 	option_error("error in pass-filter expression: %s\n",
 		     pcap_geterr(pc));
-	ret = 1;
+	ret = 0;
     }
     pcap_close(pc);
 
@@ -1473,13 +1510,13 @@ setactivefilter(argv)
     char **argv;
 {
     pcap_t *pc;
-    int ret = 0;
+    int ret = 1;
 
-    pc = pcap_open_dead(DLT_PPP_WITH_DIRECTION, 65535);
+    pc = pcap_open_dead(DLT_PPP_PPPD, 65535);
     if (pcap_compile(pc, &active_filter, *argv, 1, netmask) == -1) {
 	option_error("error in active-filter expression: %s\n",
 		     pcap_geterr(pc));
-	ret = 1;
+	ret = 0;
     }
     pcap_close(pc);
 
@@ -1510,15 +1547,19 @@ setlogfile(argv)
     char **argv;
 {
     int fd, err;
+    uid_t euid;
 
-    if (!privileged_option)
-	seteuid(getuid());
+    euid = geteuid();
+    if (!privileged_option && seteuid(getuid()) == -1) {
+	option_error("unable to drop permissions to open %s: %m", *argv);
+	return 0;
+    }
     fd = open(*argv, O_WRONLY | O_APPEND | O_CREAT | O_EXCL, 0644);
     if (fd < 0 && errno == EEXIST)
 	fd = open(*argv, O_WRONLY | O_APPEND);
     err = errno;
-    if (!privileged_option)
-	seteuid(0);
+    if (!privileged_option && seteuid(euid) == -1)
+	fatal("unable to regain privileges: %m");
     if (fd < 0) {
 	errno = err;
 	option_error("Can't open log file %s: %m", *argv);
@@ -1608,3 +1649,154 @@ loadplugin(argv)
     return 0;
 }
 #endif /* PLUGIN */
+
+/*
+ * Set an environment variable specified by the user.
+ */
+static int
+user_setenv(argv)
+    char **argv;
+{
+    char *arg = argv[0];
+    char *eqp;
+    struct userenv *uep, **insp;
+
+    if ((eqp = strchr(arg, '=')) == NULL) {
+	option_error("missing = in name=value: %s", arg);
+	return 0;
+    }
+    if (eqp == arg) {
+	option_error("missing variable name: %s", arg);
+	return 0;
+    }
+    for (uep = userenv_list; uep != NULL; uep = uep->ue_next) {
+	int nlen = strlen(uep->ue_name);
+	if (nlen == (eqp - arg) &&
+	    strncmp(arg, uep->ue_name, nlen) == 0)
+	    break;
+    }
+    /* Ignore attempts by unprivileged users to override privileged sources */
+    if (uep != NULL && !privileged_option && uep->ue_priv)
+	return 1;
+    /* The name never changes, so allocate it with the structure */
+    if (uep == NULL) {
+	uep = malloc(sizeof (*uep) + (eqp-arg));
+	strncpy(uep->ue_name, arg, eqp-arg);
+	uep->ue_name[eqp-arg] = '\0';
+	uep->ue_next = NULL;
+	insp = &userenv_list;
+	while (*insp != NULL)
+	    insp = &(*insp)->ue_next;
+	*insp = uep;
+    } else {
+	struct userenv *uep2;
+	for (uep2 = userenv_list; uep2 != NULL; uep2 = uep2->ue_next) {
+	    if (uep2 != uep && !uep2->ue_isset)
+		break;
+	}
+	if (uep2 == NULL && !uep->ue_isset)
+	    find_option("unset")->flags |= OPT_NOPRINT;
+	free(uep->ue_value);
+    }
+    uep->ue_isset = 1;
+    uep->ue_priv = privileged_option;
+    uep->ue_source = option_source;
+    uep->ue_value = strdup(eqp + 1);
+    curopt->flags &= ~OPT_NOPRINT;
+    return 1;
+}
+
+static void
+user_setprint(opt, printer, arg)
+    option_t *opt;
+    printer_func printer;
+    void *arg;
+{
+    struct userenv *uep, *uepnext;
+
+    uepnext = userenv_list;
+    while (uepnext != NULL && !uepnext->ue_isset)
+	uepnext = uepnext->ue_next;
+    while ((uep = uepnext) != NULL) {
+	uepnext = uep->ue_next;
+	while (uepnext != NULL && !uepnext->ue_isset)
+	    uepnext = uepnext->ue_next;
+	(*printer)(arg, "%s=%s", uep->ue_name, uep->ue_value);
+	if (uepnext != NULL)
+	    (*printer)(arg, "\t\t# (from %s)\n%s ", uep->ue_source, opt->name);
+	else
+	    opt->source = uep->ue_source;
+    }
+}
+
+static int
+user_unsetenv(argv)
+    char **argv;
+{
+    struct userenv *uep, **insp;
+    char *arg = argv[0];
+
+    if (strchr(arg, '=') != NULL) {
+	option_error("unexpected = in name: %s", arg);
+	return 0;
+    }
+    if (arg == '\0') {
+	option_error("missing variable name for unset");
+	return 0;
+    }
+    for (uep = userenv_list; uep != NULL; uep = uep->ue_next) {
+	if (strcmp(arg, uep->ue_name) == 0)
+	    break;
+    }
+    /* Ignore attempts by unprivileged users to override privileged sources */
+    if (uep != NULL && !privileged_option && uep->ue_priv)
+	return 1;
+    /* The name never changes, so allocate it with the structure */
+    if (uep == NULL) {
+	uep = malloc(sizeof (*uep) + strlen(arg));
+	strcpy(uep->ue_name, arg);
+	uep->ue_next = NULL;
+	insp = &userenv_list;
+	while (*insp != NULL)
+	    insp = &(*insp)->ue_next;
+	*insp = uep;
+    } else {
+	struct userenv *uep2;
+	for (uep2 = userenv_list; uep2 != NULL; uep2 = uep2->ue_next) {
+	    if (uep2 != uep && uep2->ue_isset)
+		break;
+	}
+	if (uep2 == NULL && uep->ue_isset)
+	    find_option("set")->flags |= OPT_NOPRINT;
+	free(uep->ue_value);
+    }
+    uep->ue_isset = 0;
+    uep->ue_priv = privileged_option;
+    uep->ue_source = option_source;
+    uep->ue_value = NULL;
+    curopt->flags &= ~OPT_NOPRINT;
+    return 1;
+}
+
+static void
+user_unsetprint(opt, printer, arg)
+    option_t *opt;
+    printer_func printer;
+    void *arg;
+{
+    struct userenv *uep, *uepnext;
+
+    uepnext = userenv_list;
+    while (uepnext != NULL && uepnext->ue_isset)
+	uepnext = uepnext->ue_next;
+    while ((uep = uepnext) != NULL) {
+	uepnext = uep->ue_next;
+	while (uepnext != NULL && uepnext->ue_isset)
+	    uepnext = uepnext->ue_next;
+	(*printer)(arg, "%s", uep->ue_name);
+	if (uepnext != NULL)
+	    (*printer)(arg, "\t\t# (from %s)\n%s ", uep->ue_source, opt->name);
+	else
+	    opt->source = uep->ue_source;
+    }
+}

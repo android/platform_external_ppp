@@ -38,7 +38,7 @@
 #endif
 
 #ifndef USE_CRYPT
-#ifdef ANDROID_CHANGES
+#if defined(__ANDROID__)
 #include <openssl/des.h>
 #else
 #include <des.h>

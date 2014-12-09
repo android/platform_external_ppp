@@ -92,7 +92,9 @@
 #include <ctype.h>
 #include <termios.h>
 #include <unistd.h>
+#if defined(__ANDROID__)
 #include <paths.h>
+#endif
 
 /* This is in netdevice.h. However, this compile will fail miserably if
    you attempt to include netdevice.h because it has so many references
@@ -100,7 +102,7 @@
    really don't use it, but it must be defined, define it now. */
 
 #ifndef MAX_ADDR_LEN
-#define xxMAX_ADDR_LEN 7
+#define MAX_ADDR_LEN 7
 #endif
 
 #if __GLIBC__ >= 2
@@ -111,13 +113,11 @@
 #include <netinet/if_ether.h>
 #else
 #include <linux/types.h>
-#include <linux/tty.h>
 #include <linux/if.h>
 #include <linux/if_arp.h>
 #include <linux/route.h>
 #include <linux/if_ether.h>
 #endif
-#include <linux/sockios.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
@@ -148,7 +148,7 @@
 #endif
 
 #ifdef INET6
-#ifndef _LINUX_IN6_H
+#if !defined(_LINUX_IN6_H) && !defined(_UAPI_LINUX_IN6_H)
 /*
  *    This is in linux/include/net/ipv6.h.
  */
@@ -165,6 +165,10 @@ struct in6_ifreq {
 	sin6.s6_addr16[0] = htons(0xfe80);			\
 	eui64_copy(eui64, sin6.s6_addr32[2]);			\
 	} while (0)
+
+#if defined(__ANDROID__)
+#include <net/route.h>
+#endif
 
 #endif /* INET6 */
 
@@ -208,7 +212,8 @@ static char loop_name[20];
 static unsigned char inbuf[512]; /* buffer for chars read from loopback */
 
 static int	if_is_up;	/* Interface has been marked up */
-static u_int32_t default_route_gateway;	/* Gateway for default route added */
+static int	if6_is_up;	/* Interface has been marked up for IPv6, to help differentiate */
+static int	have_default_route;	/* Gateway for default route added */
 static u_int32_t proxy_arp_addr;	/* Addr for proxy arp entry added */
 static char proxy_arp_dev[16];		/* Device for proxy arp entry */
 static u_int32_t our_old_addr;		/* for detecting address changes */
@@ -242,6 +247,7 @@ static void decode_version (char *buf, int *version, int *mod, int *patch);
 static int set_kdebugflag(int level);
 static int ppp_registered(void);
 static int make_ppp_unit(void);
+static int setifstate (int u, int state);
 
 extern u_char	inpacket_buf[];	/* borrowed from main.c */
 
@@ -341,11 +347,14 @@ void sys_cleanup(void)
 	if_is_up = 0;
 	sifdown(0);
     }
+    if (if6_is_up)
+	sif6down(0);
+
 /*
  * Delete any routes through the device.
  */
-    if (default_route_gateway != 0)
-	cifdefaultroute(0, 0, default_route_gateway);
+    if (have_default_route)
+	cifdefaultroute(0, 0, 0);
 
     if (has_proxy_arp)
 	cifproxyarp(0, proxy_arp_addr);
@@ -852,6 +861,30 @@ struct speed {
 #ifdef B921600
     { 921600, B921600 },
 #endif
+#ifdef B1000000
+    { 1000000, B1000000 },
+#endif
+#ifdef B1152000
+    { 1152000, B1152000 },
+#endif
+#ifdef B1500000
+    { 1500000, B1500000 },
+#endif
+#ifdef B2000000
+    { 2000000, B2000000 },
+#endif
+#ifdef B2500000
+    { 2500000, B2500000 },
+#endif
+#ifdef B3000000
+    { 3000000, B3000000 },
+#endif
+#ifdef B3500000
+    { 3500000, B3500000 },
+#endif
+#ifdef B4000000
+    { 4000000, B4000000 },
+#endif
     { 0, 0 }
 };
 
@@ -944,6 +977,9 @@ void set_up_tty(int tty_fd, int local)
     default:
 	break;
     }
+
+    if (stop_bits >= 2)
+	tios.c_cflag |= CSTOPB;
 
     speed = translate_speed(inspeed);
     if (speed) {
@@ -1392,7 +1428,7 @@ static char *path_to_procfs(const char *tail)
 	/* Default the mount location of /proc */
 	strlcpy (proc_path, "/proc", sizeof(proc_path));
 	proc_path_len = 5;
-	fp = fopen(_PATH_MOUNTED, "r");
+	fp = fopen(MOUNTED, "r");
 	if (fp != NULL) {
 	    while ((mntent = getmntent(fp)) != NULL) {
 		if (strcmp(mntent->mnt_type, MNTTYPE_IGNORE) == 0)
@@ -1593,17 +1629,17 @@ int sifdefaultroute (int unit, u_int32_t ouraddr, u_int32_t gateway)
     struct rtentry rt;
 
     if (defaultroute_exists(&rt) && strcmp(rt.rt_dev, ifname) != 0) {
-	u_int32_t old_gateway = SIN_ADDR(rt.rt_gateway);
-
-	if (old_gateway != gateway)
-	    error("not replacing existing default route to %s [%I]",
-		  rt.rt_dev, old_gateway);
+	if (rt.rt_flags & RTF_GATEWAY)
+	    error("not replacing existing default route via %I",
+		  SIN_ADDR(rt.rt_gateway));
+	else
+	    error("not replacing existing default route through %s",
+		  rt.rt_dev);
 	return 0;
     }
 
-    memset (&rt, '\0', sizeof (rt));
-    SET_SA_FAMILY (rt.rt_dst,     AF_INET);
-    SET_SA_FAMILY (rt.rt_gateway, AF_INET);
+    memset (&rt, 0, sizeof (rt));
+    SET_SA_FAMILY (rt.rt_dst, AF_INET);
 
     rt.rt_dev = ifname;
 
@@ -1612,16 +1648,14 @@ int sifdefaultroute (int unit, u_int32_t ouraddr, u_int32_t gateway)
 	SIN_ADDR(rt.rt_genmask) = 0L;
     }
 
-    SIN_ADDR(rt.rt_gateway) = gateway;
-
-    rt.rt_flags = RTF_UP | RTF_GATEWAY;
+    rt.rt_flags = RTF_UP;
     if (ioctl(sock_fd, SIOCADDRT, &rt) < 0) {
 	if ( ! ok_error ( errno ))
 	    error("default route ioctl(SIOCADDRT): %m");
 	return 0;
     }
 
-    default_route_gateway = gateway;
+    have_default_route = 1;
     return 1;
 }
 
@@ -1634,20 +1668,20 @@ int cifdefaultroute (int unit, u_int32_t ouraddr, u_int32_t gateway)
 {
     struct rtentry rt;
 
-    default_route_gateway = 0;
+    have_default_route = 0;
 
     memset (&rt, '\0', sizeof (rt));
     SET_SA_FAMILY (rt.rt_dst,     AF_INET);
     SET_SA_FAMILY (rt.rt_gateway, AF_INET);
+
+    rt.rt_dev = ifname;
 
     if (kernel_version > KVERSION(2,1,0)) {
 	SET_SA_FAMILY (rt.rt_genmask, AF_INET);
 	SIN_ADDR(rt.rt_genmask) = 0L;
     }
 
-    SIN_ADDR(rt.rt_gateway) = gateway;
-
-    rt.rt_flags = RTF_UP | RTF_GATEWAY;
+    rt.rt_flags = RTF_UP;
     if (ioctl(sock_fd, SIOCDELRT, &rt) < 0 && errno != ESRCH) {
 	if (still_ppp()) {
 	    if ( ! ok_error ( errno ))
@@ -2006,14 +2040,6 @@ int ppp_available(void)
     int    my_version, my_modification, my_patch;
     int osmaj, osmin, ospatch;
 
-    no_ppp_msg =
-	"This system lacks kernel support for PPP.  This could be because\n"
-	"the PPP kernel module could not be loaded, or because PPP was not\n"
-	"included in the kernel configuration.  If PPP was included as a\n"
-	"module, try `/sbin/modprobe -v ppp'.  If that fails, check that\n"
-	"ppp.o exists in /lib/modules/`uname -r`/net.\n"
-	"See README.linux file in the ppp distribution for more details.\n";
-
     /* get the kernel version now, since we are called before sys_init */
     uname(&utsname);
     osmaj = osmin = ospatch = 0;
@@ -2021,21 +2047,6 @@ int ppp_available(void)
     kernel_version = KVERSION(osmaj, osmin, ospatch);
 
     fd = open("/dev/ppp", O_RDWR);
-#if 0
-    if (fd < 0 && errno == ENOENT) {
-	/* try making it and see if that helps. */
-	if (mknod("/dev/ppp", S_IFCHR | S_IRUSR | S_IWUSR,
-		  makedev(108, 0)) >= 0) {
-	    fd = open("/dev/ppp", O_RDWR);
-	    if (fd >= 0)
-		info("Created /dev/ppp device node");
-	    else
-		unlink("/dev/ppp");	/* didn't work, undo the mknod */
-	} else if (errno == EEXIST) {
-	    fd = open("/dev/ppp", O_RDWR);
-	}
-    }
-#endif /* 0 */
     if (fd >= 0) {
 	new_style_driver = 1;
 
@@ -2046,15 +2057,28 @@ int ppp_available(void)
 	close(fd);
 	return 1;
     }
+
     if (kernel_version >= KVERSION(2,3,13)) {
+	error("Couldn't open the /dev/ppp device: %m");
 	if (errno == ENOENT)
 	    no_ppp_msg =
-		"pppd is unable to open the /dev/ppp device.\n"
 		"You need to create the /dev/ppp device node by\n"
 		"executing the following command as root:\n"
 		"	mknod /dev/ppp c 108 0\n";
+	else if (errno == ENODEV || errno == ENXIO)
+	    no_ppp_msg =
+		"Please load the ppp_generic kernel module.\n";
 	return 0;
     }
+
+    /* we are running on a really really old kernel */
+    no_ppp_msg =
+	"This system lacks kernel support for PPP.  This could be because\n"
+	"the PPP kernel module could not be loaded, or because PPP was not\n"
+	"included in the kernel configuration.  If PPP was included as a\n"
+	"module, try `/sbin/modprobe -v ppp'.  If that fails, check that\n"
+	"ppp.o exists in /lib/modules/`uname -r`/net.\n"
+	"See README.linux file in the ppp distribution for more details.\n";
 
 /*
  * Open a socket for doing the ioctl operations.
@@ -2139,6 +2163,9 @@ int ppp_available(void)
     return ok;
 }
 
+#if defined(__ANDROID__)
+void logwtmp (const char *line, const char *name, const char *host) {}
+#elif !defined(HAVE_LOGWTMP)
 /********************************************************************
  *
  * Update the wtmp file with the appropriate user name and tty device.
@@ -2212,7 +2239,7 @@ void logwtmp (const char *line, const char *name, const char *host)
     }
 #endif
 }
-
+#endif /* HAVE_LOGWTMP */
 
 /********************************************************************
  *
@@ -2224,9 +2251,10 @@ int sifvjcomp (int u, int vjcomp, int cidcomp, int maxcid)
 	u_int x;
 
 	if (vjcomp) {
-		if (ioctl(ppp_dev_fd, PPPIOCSMAXCID, (caddr_t) &maxcid) < 0)
+		if (ioctl(ppp_dev_fd, PPPIOCSMAXCID, (caddr_t) &maxcid) < 0) {
 			error("Couldn't set up TCP header compression: %m");
-		vjcomp = 0;
+			vjcomp = 0;
+		}
 	}
 
 	x = (vjcomp? SC_COMP_TCP: 0) | (cidcomp? 0: SC_NO_TCP_CCID);
@@ -2242,25 +2270,12 @@ int sifvjcomp (int u, int vjcomp, int cidcomp, int maxcid)
 
 int sifup(int u)
 {
-    struct ifreq ifr;
+    int ret;
 
-    memset (&ifr, '\0', sizeof (ifr));
-    strlcpy(ifr.ifr_name, ifname, sizeof (ifr.ifr_name));
-    if (ioctl(sock_fd, SIOCGIFFLAGS, (caddr_t) &ifr) < 0) {
-	if (! ok_error (errno))
-	    error("ioctl (SIOCGIFFLAGS): %m (line %d)", __LINE__);
-	return 0;
-    }
+    if ((ret = setifstate(u, 1)))
+	if_is_up++;
 
-    ifr.ifr_flags |= (IFF_UP | IFF_POINTOPOINT);
-    if (ioctl(sock_fd, SIOCSIFFLAGS, (caddr_t) &ifr) < 0) {
-	if (! ok_error (errno))
-	    error("ioctl(SIOCSIFFLAGS): %m (line %d)", __LINE__);
-	return 0;
-    }
-    if_is_up++;
-
-    return 1;
+    return ret;
 }
 
 /********************************************************************
@@ -2271,10 +2286,58 @@ int sifup(int u)
 
 int sifdown (int u)
 {
-    struct ifreq ifr;
-
     if (if_is_up && --if_is_up > 0)
 	return 1;
+
+#ifdef INET6
+    if (if6_is_up)
+	return 1;
+#endif /* INET6 */
+
+    return setifstate(u, 0);
+}
+
+#ifdef INET6
+/********************************************************************
+ *
+ * sif6up - Config the interface up for IPv6
+ */
+
+int sif6up(int u)
+{
+    int ret;
+
+    if ((ret = setifstate(u, 1)))
+	if6_is_up = 1;
+
+    return ret;
+}
+
+/********************************************************************
+ *
+ * sif6down - Disable the IPv6CP protocol and config the interface
+ *	      down if there are no remaining protocols.
+ */
+
+int sif6down (int u)
+{
+    if6_is_up = 0;
+
+    if (if_is_up)
+	return 1;
+
+    return setifstate(u, 0);
+}
+#endif /* INET6 */
+
+/********************************************************************
+ *
+ * setifstate - Config the interface up or down
+ */
+
+static int setifstate (int u, int state)
+{
+    struct ifreq ifr;
 
     memset (&ifr, '\0', sizeof (ifr));
     strlcpy(ifr.ifr_name, ifname, sizeof (ifr.ifr_name));
@@ -2284,7 +2347,10 @@ int sifdown (int u)
 	return 0;
     }
 
-    ifr.ifr_flags &= ~IFF_UP;
+    if (state)
+	ifr.ifr_flags |= IFF_UP;
+    else
+	ifr.ifr_flags &= ~IFF_UP;
     ifr.ifr_flags |= IFF_POINTOPOINT;
     if (ioctl(sock_fd, SIOCSIFFLAGS, (caddr_t) &ifr) < 0) {
 	if (! ok_error (errno))
@@ -2330,11 +2396,13 @@ int sifaddr (int unit, u_int32_t our_adr, u_int32_t his_adr,
 /*
  *  Set the gateway address
  */
-    SIN_ADDR(ifr.ifr_dstaddr) = his_adr;
-    if (ioctl(sock_fd, SIOCSIFDSTADDR, (caddr_t) &ifr) < 0) {
-	if (! ok_error (errno))
-	    error("ioctl(SIOCSIFDSTADDR): %m (line %d)", __LINE__);
-	return (0);
+    if (his_adr != 0) {
+	SIN_ADDR(ifr.ifr_dstaddr) = his_adr;
+	if (ioctl(sock_fd, SIOCSIFDSTADDR, (caddr_t) &ifr) < 0) {
+	    if (! ok_error (errno))
+		error("ioctl(SIOCSIFDSTADDR): %m (line %d)", __LINE__);
+	    return (0);
+	}
     }
 /*
  *  Set the netmask.
@@ -2812,8 +2880,8 @@ sys_check_options(void)
 
     if (ipxcp_protent.enabled_flag) {
 	struct stat stat_buf;
-	if ((path = path_to_procfs("/net/ipx/interface")) == 0
-	    || (path = path_to_procfs("/net/ipx_interface")) == 0
+	if (  ((path = path_to_procfs("/net/ipx/interface")) == NULL
+	    && (path = path_to_procfs("/net/ipx_interface")) == NULL)
 	    || lstat(path, &stat_buf) < 0) {
 	    error("IPX support is not present in the kernel\n");
 	    ipxcp_protent.enabled_flag = 0;
@@ -2867,7 +2935,7 @@ ether_to_eui64(eui64_t *p_eui64)
     /*
      * And convert the EUI-48 into EUI-64, per RFC 2472 [sec 4.1]
      */
-    ptr = ifr.ifr_hwaddr.sa_data;
+    ptr = (unsigned char *) ifr.ifr_hwaddr.sa_data;
     p_eui64->e8[0] = ptr[0] | 0x02;
     p_eui64->e8[1] = ptr[1];
     p_eui64->e8[2] = ptr[2];

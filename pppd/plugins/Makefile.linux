@@ -1,18 +1,25 @@
-CC	= gcc
+#CC	= gcc
 COPTS	= -O2 -g
 CFLAGS	= $(COPTS) -I.. -I../../include -fPIC
 LDFLAGS	= -shared
 INSTALL	= install
 
-DESTDIR = @DESTDIR@
+DESTDIR = $(INSTROOT)@DESTDIR@
 BINDIR = $(DESTDIR)/sbin
 MANDIR = $(DESTDIR)/share/man/man8
 LIBDIR = $(DESTDIR)/lib/pppd/$(VERSION)
 
-SUBDIRS := rp-pppoe pppoatm radius
+SUBDIRS := rp-pppoe pppoatm pppol2tp
 # Uncomment the next line to include the radius authentication plugin
-# SUBDIRS += radius
+SUBDIRS += radius
 PLUGINS := minconn.so passprompt.so passwordfd.so winbind.so
+
+# This setting should match the one in ../Makefile.linux
+MPPE=y
+
+ifdef MPPE
+CFLAGS   += -DMPPE=1
+endif
 
 # include dependencies if present
 ifeq (.depend,$(wildcard .depend))

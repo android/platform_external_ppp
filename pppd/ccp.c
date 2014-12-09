@@ -28,7 +28,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define RCSID	"$Id: ccp.c,v 1.48 2004/11/13 02:28:15 paulus Exp $"
+#define RCSID	"$Id: ccp.c,v 1.50 2005/06/26 19:34:41 carlsonj Exp $"
 
 #include <stdlib.h>
 #include <string.h>
@@ -898,6 +898,7 @@ ccp_nakci(f, p, len, treat_as_reject)
     fsm *f;
     u_char *p;
     int len;
+    int treat_as_reject;
 {
     ccp_options *go = &ccp_gotoptions[f->unit];
     ccp_options no;		/* options we've seen already */
@@ -1158,8 +1159,11 @@ ccp_reqci(f, p, lenp, dont_nak)
 		    }
 		} else {
 		    /* Neither are set. */
-		    newret = CONFREJ;
-		    break;
+		    /* We cannot accept this.  */
+		    newret = CONFNAK;
+		    /* Give the peer our idea of what can be used,
+		       so it can choose and confirm */
+		    ho->mppe = ao->mppe;
 		}
 
 		/* rebuild the opts */
