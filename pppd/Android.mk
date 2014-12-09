@@ -2,27 +2,30 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= \
-	main.c \
-	magic.c \
-	fsm.c \
-	lcp.c \
-	ipcp.c \
-	upap.c \
-	chap-new.c \
-	ccp.c \
-	ecp.c \
 	auth.c \
-	options.c \
-	sys-linux.c \
+	ccp.c \
+	chap-md5.c \
+	chap-new.c \
 	chap_ms.c \
 	demand.c \
-	utils.c \
-	tty.c \
 	eap.c \
-	chap-md5.c \
-	pppcrypt.c \
+	ecp.c \
+	eui64.c \
+	fsm.c \
+	ipcp.c \
+	ipv6cp.c \
+	lcp.c \
+	magic.c \
+	main.c \
 	openssl-hash.c \
-	pppox.c
+	options.c \
+	pppcrypt.c \
+	pppox.c \
+	session.c \
+	sys-linux.c \
+	tty.c \
+	upap.c \
+	utils.c
 
 LOCAL_SHARED_LIBRARIES := \
 	libcutils liblog libcrypto
@@ -30,7 +33,7 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/include
 
-LOCAL_CFLAGS := -DANDROID_CHANGES -DCHAPMS=1 -DMPPE=1 -Iexternal/openssl/include
+LOCAL_CFLAGS := -DCHAPMS=1 -DMPPE=1 -DINET6=1 -Iexternal/openssl/include -Wno-unused-parameter -Wno-empty-body -Wno-missing-field-initializers -Wno-attributes -Wno-sign-compare -Wno-pointer-sign -Werror
 
 LOCAL_MODULE:= pppd
 

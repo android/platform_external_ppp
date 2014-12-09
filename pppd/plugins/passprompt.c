@@ -50,7 +50,7 @@ static int promptpass(char *user, char *passwd)
     }
     if (!kid) {
 	/* we are the child, exec the program */
-	char *argv[4], fdstr[32];
+	char *argv[5], fdstr[32];
 	sys_close();
 	closelog();
 	close(p[0]);
@@ -82,7 +82,6 @@ static int promptpass(char *user, char *passwd)
 	}
 	readgood += red;
     } while (readgood < MAXSECRETLEN - 1);
-    passwd[readgood] = 0;
     close(p[0]);
 
     /* now wait for child to exit */
@@ -95,6 +94,7 @@ static int promptpass(char *user, char *passwd)
 
     if (readgood < 0)
 	return 0;
+    passwd[readgood] = 0;
     if (!WIFEXITED(wstat))
 	warn("%s terminated abnormally", promptprog);
     if (WEXITSTATUS(wstat))

@@ -126,7 +126,11 @@ u_char *key;
 }
 
 bool
+#if defined(__ANDROID__)
 DesEncrypt(clear, cipher)
+#else
+DesEncrypt(clear, key, cipher)
+#endif
 u_char *clear;	/* IN  8 octets */
 u_char *cipher;	/* OUT 8 octets */
 {

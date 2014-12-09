@@ -40,7 +40,7 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define RCSID	"$Id: lcp.c,v 1.74 2004/11/13 02:28:15 paulus Exp $"
+#define RCSID	"$Id: lcp.c,v 1.76 2006/05/22 00:04:07 paulus Exp $"
 
 /*
  * TODO:
@@ -397,21 +397,29 @@ lcp_close(unit, reason)
     char *reason;
 {
     fsm *f = &lcp_fsm[unit];
+    int oldstate;
 
     if (phase != PHASE_DEAD && phase != PHASE_MASTER)
 	new_phase(PHASE_TERMINATE);
-    if (f->state == STOPPED && f->flags & (OPT_PASSIVE|OPT_SILENT)) {
+
+    if (f->flags & DELAYED_UP) {
+	untimeout(lcp_delayed_up, f);
+	f->state = STOPPED;
+    }
+    oldstate = f->state;
+
+    fsm_close(f, reason);
+    if (oldstate == STOPPED && f->flags & (OPT_PASSIVE|OPT_SILENT|DELAYED_UP)) {
 	/*
 	 * This action is not strictly according to the FSM in RFC1548,
 	 * but it does mean that the program terminates if you do a
-	 * lcp_close() in passive/silent mode when a connection hasn't
-	 * been established.
+	 * lcp_close() when a connection hasn't been established
+	 * because we are in passive/silent mode or because we have
+	 * delayed the fsm_lowerup() call and it hasn't happened yet.
 	 */
-	f->state = CLOSED;
+	f->flags &= ~DELAYED_UP;
 	lcp_finished(f);
-
-    } else
-	fsm_close(f, reason);
+    }
 }
 
 
@@ -453,9 +461,10 @@ lcp_lowerdown(unit)
 {
     fsm *f = &lcp_fsm[unit];
 
-    if (f->flags & DELAYED_UP)
+    if (f->flags & DELAYED_UP) {
 	f->flags &= ~DELAYED_UP;
-    else
+	untimeout(lcp_delayed_up, f);
+    } else
 	fsm_lowerdown(&lcp_fsm[unit]);
 }
 
@@ -489,11 +498,11 @@ lcp_input(unit, p, len)
 
     if (f->flags & DELAYED_UP) {
 	f->flags &= ~DELAYED_UP;
+	untimeout(lcp_delayed_up, f);
 	fsm_lowerup(f);
     }
     fsm_input(f, p, len);
 }
-
 
 /*
  * lcp_extcode - Handle a LCP-specific code.
@@ -525,6 +534,8 @@ lcp_extcode(f, code, id, inp, len)
 	break;
 
     case DISCREQ:
+    case IDENTIF:
+    case TIMEREM:
 	break;
 
     default:
@@ -548,6 +559,7 @@ lcp_rprotrej(f, inp, len)
     int i;
     struct protent *protp;
     u_short prot;
+    const char *pname;
 
     if (len < 2) {
 	LCPDEBUG(("lcp_rprotrej: Rcvd short Protocol-Reject packet!"));
@@ -565,16 +577,27 @@ lcp_rprotrej(f, inp, len)
 	return;
     }
 
+    pname = protocol_name(prot);
+
     /*
      * Upcall the proper Protocol-Reject routine.
      */
     for (i = 0; (protp = protocols[i]) != NULL; ++i)
 	if (protp->protocol == prot && protp->enabled_flag) {
+	    if (pname == NULL)
+		dbglog("Protocol-Reject for 0x%x received", prot);
+	    else
+		dbglog("Protocol-Reject for '%s' (0x%x) received", pname,
+		       prot);
 	    (*protp->protrej)(f->unit);
 	    return;
 	}
 
-    warn("Protocol-Reject for unsupported protocol 0x%x", prot);
+    if (pname == NULL)
+	warn("Protocol-Reject for unsupported protocol 0x%x", prot);
+    else
+	warn("Protocol-Reject for unsupported protocol '%s' (0x%x)", pname,
+	     prot);
 }
 
 
@@ -1292,8 +1315,8 @@ lcp_nakci(f, p, len, treat_as_reject)
 	if (looped_back) {
 	    if (++try.numloops >= lcp_loopbackfail) {
 		notice("Serial line is looped back.");
-		lcp_close(f->unit, "Loopback detected");
 		status = EXIT_LOOPBACK;
+		lcp_close(f->unit, "Loopback detected");
 	    }
 	} else
 	    try.numloops = 0;
@@ -1964,7 +1987,8 @@ lcp_finished(f)
 static char *lcp_codenames[] = {
     "ConfReq", "ConfAck", "ConfNak", "ConfRej",
     "TermReq", "TermAck", "CodeRej", "ProtRej",
-    "EchoReq", "EchoRep", "DiscReq"
+    "EchoReq", "EchoRep", "DiscReq", "Ident",
+    "TimeRem"
 };
 
 static int
@@ -2042,7 +2066,6 @@ lcp_printpkt(p, plen, printer, arg)
 				printer(arg, " MD5");
 				++p;
 				break;
-#ifdef CHAPMS
 			    case CHAP_MICROSOFT:
 				printer(arg, " MS");
 				++p;
@@ -2052,7 +2075,6 @@ lcp_printpkt(p, plen, printer, arg)
 				printer(arg, " MS-v2");
 				++p;
 				break;
-#endif
 			    }
 			}
 			break;
@@ -2168,8 +2190,29 @@ lcp_printpkt(p, plen, printer, arg)
 	if (len >= 4) {
 	    GETLONG(cilong, p);
 	    printer(arg, " magic=0x%x", cilong);
-	    p += 4;
 	    len -= 4;
+	}
+	break;
+
+    case IDENTIF:
+    case TIMEREM:
+	if (len >= 4) {
+	    GETLONG(cilong, p);
+	    printer(arg, " magic=0x%x", cilong);
+	    len -= 4;
+	}
+	if (code == TIMEREM) {
+	    if (len < 4)
+		break;
+	    GETLONG(cilong, p);
+	    printer(arg, " seconds=%u", cilong);
+	    len -= 4;
+	}
+	if (len > 0) {
+	    printer(arg, " ");
+	    print_string((char *)p, len, printer, arg);
+	    p += len;
+	    len = 0;
 	}
 	break;
     }
@@ -2198,8 +2241,8 @@ void LcpLinkFailure (f)
     if (f->state == OPENED) {
 	info("No response to %d echo-requests", lcp_echos_pending);
         notice("Serial link appears to be disconnected.");
-        lcp_close(f->unit, "Peer not responding");
 	status = EXIT_PEER_DEAD;
+	lcp_close(f->unit, "Peer not responding");
     }
 }
 

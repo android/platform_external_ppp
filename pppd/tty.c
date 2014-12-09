@@ -68,12 +68,13 @@
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#define RCSID	"$Id: tty.c,v 1.22 2004/11/13 12:07:29 paulus Exp $"
+#define RCSID	"$Id: tty.c,v 1.27 2008/07/01 12:27:56 paulus Exp $"
 
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <termios.h>
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -135,6 +136,7 @@ struct stat devstat;		/* result of stat() on devnam */
 
 /* option variables */
 int	crtscts = 0;		/* Use hardware flow control */
+int	stop_bits = 1;		/* Number of serial port stop bits */
 bool	modem = 1;		/* Use modem control lines */
 int	inspeed = 0;		/* Input/Output speed requested */
 bool	lockflag = 0;		/* Create lock file to lock the serial dev */
@@ -220,6 +222,9 @@ option_t tty_options[] = {
       OPT_PRIOSUB | OPT_ALIAS | OPT_NOARG | OPT_VAL(-1) },
     { "xonxoff", o_special_noarg, (void *)setxonxoff,
       "Set software (XON/XOFF) flow control", OPT_PRIOSUB },
+    { "stop-bits", o_int, &stop_bits,
+      "Number of stop bits in serial port",
+      OPT_PRIO | OPT_PRIVFIX | OPT_LIMITS, NULL, 2, 1 },
 
     { "modem", o_bool, &modem,
       "Use modem control lines", OPT_PRIO | 1 },
@@ -553,7 +558,6 @@ int connect_tty()
 	 * out and we want to use the modem lines, we reopen it later
 	 * in order to wait for the carrier detect signal from the modem.
 	 */
-	hungup = 0;
 	got_sigterm = 0;
 	connector = doing_callback? callback_script: connect_script;
 	if (devnam[0] != 0) {
@@ -563,12 +567,16 @@ int connect_tty()
 			int err, prio;
 
 			prio = privopen? OPRIO_ROOT: tty_options[0].priority;
-			if (prio < OPRIO_ROOT)
-				seteuid(uid);
+			if (prio < OPRIO_ROOT && seteuid(uid) == -1) {
+				error("Unable to drop privileges before opening %s: %m\n",
+				      devnam);
+				status = EXIT_OPEN_FAILED;
+				goto errret;
+			}
 			real_ttyfd = open(devnam, O_NONBLOCK | O_RDWR, 0);
 			err = errno;
-			if (prio < OPRIO_ROOT)
-				seteuid(0);
+			if (prio < OPRIO_ROOT && seteuid(0) == -1)
+				fatal("Unable to regain privileges");
 			if (real_ttyfd >= 0)
 				break;
 			errno = err;
@@ -684,11 +692,11 @@ int connect_tty()
 			if (device_script(initializer, ttyfd, ttyfd, 0) < 0) {
 				error("Initializer script failed");
 				status = EXIT_INIT_FAILED;
-				goto errret;
+				goto errretf;
 			}
 			if (got_sigterm) {
 				disconnect_tty();
-				goto errret;
+				goto errretf;
 			}
 			info("Serial port initialized.");
 		}
@@ -697,11 +705,11 @@ int connect_tty()
 			if (device_script(connector, ttyfd, ttyfd, 0) < 0) {
 				error("Connect script failed");
 				status = EXIT_CONNECT_FAILED;
-				goto errret;
+				goto errretf;
 			}
 			if (got_sigterm) {
 				disconnect_tty();
-				goto errret;
+				goto errretf;
 			}
 			info("Serial connection established.");
 		}
@@ -750,18 +758,13 @@ int connect_tty()
 
 	return ttyfd;
 
+ errretf:
+	if (real_ttyfd >= 0)
+		tcflush(real_ttyfd, TCIOFLUSH);
  errret:
 	if (pty_master >= 0) {
 		close(pty_master);
 		pty_master = -1;
-	}
-	if (pty_slave >= 0) {
-		close(pty_slave);
-		pty_slave = -1;
-	}
-	if (real_ttyfd >= 0) {
-		close(real_ttyfd);
-		real_ttyfd = -1;
 	}
 	ttyfd = -1;
 	if (got_sigterm)
@@ -781,6 +784,7 @@ void disconnect_tty()
 	} else {
 		info("Serial link disconnected.");
 	}
+	stop_charshunt(NULL, 0);
 }
 
 void tty_close_fds()
@@ -944,8 +948,7 @@ start_charshunt(ifd, ofd)
 	exit(0);
     }
     charshunt_pid = cpid;
-    add_notifier(&sigreceived, stop_charshunt, 0);
-    record_child(cpid, "pppd (charshunt)", charshunt_done, NULL);
+    record_child(cpid, "pppd (charshunt)", charshunt_done, NULL, 1);
     return 1;
 }
 
