@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "8457d640_b7b0c800",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2014-12-10T00:26:35Z",
+      "side": 1,
+      "message": "Don\u0027t you need to move this around the closelog from above? Android assumes that the log is never closed.",
+      "parentUuid": "24a8ea5a_4d9431d4",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24a8ea5a_ad24c517",
         "filename": "pppd/patchlevel.h",
         "patchSetId": 1
@@ -115,6 +133,70 @@
       "writtenOn": "2014-12-09T23:17:53Z",
       "side": 1,
       "message": "should HAVE_LOGWTMP have been in here? or isn\u0027t that handled by configure?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c45d4e61_998e9b8d",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2014-12-10T00:26:35Z",
+      "side": 1,
+      "message": "Is this in the configure script?",
+      "parentUuid": "44ab1e57_6b1f95d1",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_f881918c",
+        "filename": "pppd/plugins/rp-pppoe/plugin.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2014-12-10T00:26:35Z",
+      "side": 1,
+      "message": "Is this really in upstream? Seems a bit odd to comment out this include file.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_58e7dd67",
+        "filename": "pppd/session.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2014-12-10T00:26:35Z",
+      "side": 1,
+      "message": "Is this needed any more? I assume it\u0027s because something doesn\u0027t compile below, but I think we have all of these functions now so it will compile.",
+      "range": {
+        "startLine": 303,
+        "startChar": 6,
+        "endLine": 303,
+        "endChar": 32
+      },
       "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
