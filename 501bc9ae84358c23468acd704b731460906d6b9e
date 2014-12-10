@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8457d640_3a465df3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "I\u0027ve changed everything to use __ANDROID__ rather than ANDROID_CHANGES.",
+      "parentUuid": "a4521a4f_b80c3960",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4521a4f_38402965",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-12-09T23:17:53Z",
       "side": 1,
       "message": "if you diff this against your clean upstream tree, every change has ANDROID_CHANGES in it now?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c45d4e61_5cd0718c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "It does now. I\u0027ve gone through the diff and ensured that every change has __ANDROID__ around it. Also, I removed a few unused globals and some (now) unneeded #includes that were added.\n\nIf you look at the difference between patchsets, you should see every location where we differ from upstream because of the switch to __ANDROID__.",
+      "parentUuid": "a4521a4f_38402965",
       "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -89,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "8457d640_fad50573",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8457d640_b7b0c800",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24a8ea5a_ad24c517",
         "filename": "pppd/patchlevel.h",
         "patchSetId": 1
@@ -100,6 +154,24 @@
       "writtenOn": "2014-12-09T23:17:53Z",
       "side": 1,
       "message": "a decade out of date? nice.",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_1b355f7b",
+        "filename": "pppd/patchlevel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "24a8ea5a_ad24c517",
       "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -123,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "8457d640_57296c72",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64ae6267_cfced53f",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44ab1e57_2bbc3d5d",
         "filename": "pppd/plugins/rp-pppoe/config.h",
         "patchSetId": 1
@@ -134,6 +224,24 @@
       "writtenOn": "2014-12-09T23:17:53Z",
       "side": 1,
       "message": "and this.",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c45d4e61_79fd8712",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44ab1e57_2bbc3d5d",
       "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -175,6 +283,24 @@
     },
     {
       "key": {
+        "uuid": "a4521a4f_18e725bb",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "This config.h is just for the rp-pppoe plugin (which isn\u0027t compiled in Android), but the wtmp calls were in the main pppd code.",
+      "parentUuid": "44ab1e57_6b1f95d1",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4521a4f_f881918c",
         "filename": "pppd/plugins/rp-pppoe/plugin.c",
         "patchSetId": 1
@@ -186,6 +312,30 @@
       "writtenOn": "2014-12-10T00:26:35Z",
       "side": 1,
       "message": "Is this really in upstream? Seems a bit odd to comment out this include file.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_1bc6ffd9",
+        "filename": "pppd/plugins/rp-pppoe/plugin.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "This is really upstream: https://github.com/paulusmack/ppp/blob/master/pppd/plugins/rp-pppoe/plugin.c#L36",
+      "parentUuid": "a4521a4f_f881918c",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -245,6 +395,30 @@
     },
     {
       "key": {
+        "uuid": "a4521a4f_bbdb93a8",
+        "filename": "pppd/session.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "This #if is just to remove references to functions that will cause a compile failure on Android. Towards the start of this function is a an \"#if defined(__ANDROID__) return SESSION_FAILED; #endif\" block that ensures that Android will always return SESSION_FAILED, which I think matches the current behaviour.",
+      "parentUuid": "a4521a4f_9b2a0fe5",
+      "range": {
+        "startLine": 303,
+        "startChar": 6,
+        "endLine": 303,
+        "endChar": 32
+      },
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4346e09_c15942d2",
         "filename": "pppd/sys-linux.c",
         "patchSetId": 1
@@ -256,6 +430,30 @@
       "writtenOn": "2014-12-09T23:17:53Z",
       "side": 1,
       "message": "or _UAPI_LINUX_IN6_H --- we have the UAPI version of this same file. makes me wonder whether we should change our uapi import script to rename all these include guards...",
+      "range": {
+        "startLine": 151,
+        "startChar": 39,
+        "endLine": 151,
+        "endChar": 54
+      },
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_d8ec8d9a",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4346e09_c15942d2",
       "range": {
         "startLine": 151,
         "startChar": 39,
@@ -285,6 +483,24 @@
     },
     {
       "key": {
+        "uuid": "c45d4e61_d9249319",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4393a03_408ece14",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c45d4e61_f98cf75e",
         "filename": "pppd/sys-linux.c",
         "patchSetId": 1
@@ -302,6 +518,24 @@
     },
     {
       "key": {
+        "uuid": "8457d640_1751b45a",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2170,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "Yep, you\u0027re right, that\u0027s much better.",
+      "parentUuid": "c45d4e61_f98cf75e",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c45d4e61_59cc0398",
         "filename": "pppd/tty.c",
         "patchSetId": 1
@@ -313,6 +547,24 @@
       "writtenOn": "2014-12-09T23:17:53Z",
       "side": 1,
       "message": "why? presumably the code is single-threaded at this point or they\u0027d be broken on glibc too?",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_bb0c3360",
+        "filename": "pppd/tty.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-10T00:34:07Z",
+      "side": 1,
+      "message": "The use of ttyname triggers a deprecation warning. -Werror could be removed if you prefer.",
+      "parentUuid": "c45d4e61_59cc0398",
       "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
