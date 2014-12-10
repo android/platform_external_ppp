@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "8457d640_dabbe140",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-10T00:30:14Z",
+      "side": 1,
+      "message": "android doesn\u0027t care. the code\u0027s above is fine as it is. this #if crap is cruft from when bionic didn\u0027t have \u003csyslog.h\u003e.",
+      "parentUuid": "8457d640_b7b0c800",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24a8ea5a_ad24c517",
         "filename": "pppd/patchlevel.h",
         "patchSetId": 1
@@ -191,6 +209,30 @@
       "writtenOn": "2014-12-10T00:26:35Z",
       "side": 1,
       "message": "Is this needed any more? I assume it\u0027s because something doesn\u0027t compile below, but I think we have all of these functions now so it will compile.",
+      "range": {
+        "startLine": 303,
+        "startChar": 6,
+        "endLine": 303,
+        "endChar": 32
+      },
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4521a4f_9b2a0fe5",
+        "filename": "pppd/session.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-10T00:30:14Z",
+      "side": 1,
+      "message": "i think it will compile, but i\u0027m not sure whether it\u0027ll have the intended behavior. what is \u0027user\u0027 going to be set to? we\u0027ll _probably_ get NULL from getpwnam so we\u0027ll _probably_ return SESSION_FAILED like before, but depending on what values \u0027user\u0027 can take that might not be true.\n\nwe could certainly try it though...",
+      "parentUuid": "a4521a4f_58e7dd67",
       "range": {
         "startLine": 303,
         "startChar": 6,
