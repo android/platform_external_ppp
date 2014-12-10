@@ -568,6 +568,24 @@
       "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c45d4e61_9f65dbb7",
+        "filename": "pppd/tty.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-10T00:46:23Z",
+      "side": 1,
+      "message": "yeah, i\u0027ll just fix ttyname to use TLS so it \"just works\" even for threaded code. that\u0027s what we usually do in bionic. i only didn\u0027t do it for ttyname because i didn\u0027t think anyone cared :-)",
+      "parentUuid": "a4521a4f_bb0c3360",
+      "revId": "501bc9ae84358c23468acd704b731460906d6b9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
