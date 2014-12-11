@@ -1,0 +1,7 @@
+Code-Review+2: Elliott Hughes <enh@google.com>
+Verified+1: Bionic Buildbot <bionicbb@android.com>
+Submitted-by: Elliott Hughes <enh@google.com>
+Submitted-at: Thu, 11 Dec 2014 22:08:00 +0000
+Reviewed-on: https://android-review.googlesource.com/118492
+Project: platform/external/ppp
+Branch: refs/heads/master
