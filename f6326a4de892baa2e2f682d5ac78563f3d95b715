@@ -230,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "c4eaaeee_e50d9ede",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T20:21:17Z",
+      "side": 1,
+      "message": "|| defined(__ANDROID__) on that line causes other build errors :(",
+      "parentUuid": "64d9026f_d7f6d6ee",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84a6f6d1_df34bb80",
         "filename": "pppd/utils.c",
         "patchSetId": 3
@@ -277,6 +295,24 @@
       "side": 1,
       "message": "it should, and it looks like they were trying to actually log stuff themselves, so it\u0027s not like we\u0027ll be guilty of suddenly turning on a log spamhose.",
       "parentUuid": "c4eaaeee_da9b99db",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44d6be40_56dc2a77",
+        "filename": "pppd/utils.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T20:21:17Z",
+      "side": 1,
+      "message": "I\u0027ve removed all the changes around logging and confirmed that VPNs still connect and that messages from pppd still appear in logcat.",
+      "parentUuid": "c4eaaeee_4500ea27",
       "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
