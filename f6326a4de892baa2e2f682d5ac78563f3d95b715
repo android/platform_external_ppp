@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84a6f6d1_dfd5dbff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "that doesn\u0027t seem to be true. i still see a lot of references to ANDROID_CHANGES. are they actually upstream?",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84a6f6d1_ff02dffd",
+        "filename": "pppd/main.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "doesn\u0027t matter, but this should work fine now.",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64abc29e_be9d7978",
+        "filename": "pppd/plugins/pppoatm/pppoatm.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "just leave it in and let it fail?",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4a13abc_a05afaf4",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "(configure usually #defines to 1.)",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4a13abc_a0e0ba9f",
+        "filename": "pppd/pppcrypt.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "this looks like it\u0027s fixed upstream?\n\nbool\nDesEncrypt(clear, cipher)\nu_char *clear;\t/* IN  8 octets */\nu_char *cipher;\t/* OUT 8 octets */\n{",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64abc29e_7ec5b148",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "unneeded now?",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84a6f6d1_df34bb80",
+        "filename": "pppd/utils.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T00:12:36Z",
+      "side": 1,
+      "message": "this should just work too (if you care).",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
