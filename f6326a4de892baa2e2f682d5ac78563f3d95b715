@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "64d9026f_d7f6d6ee",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T19:44:42Z",
+      "side": 1,
+      "message": "weird. glibc seems to only define this in \u003cnet/route.h\u003e, and no other glibc header includes \u003cnet/route.h\u003e, so i\u0027m not sure where they\u0027re getting this from normally.\n\noh, it\u0027s the __GLIBC__ \u003e\u003d 2 above. does adding || defined(__ANDROID__) to the end of that line instead work? if not, this is fine.",
+      "parentUuid": "c4870e28_d2d55a73",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84a6f6d1_df34bb80",
         "filename": "pppd/utils.c",
         "patchSetId": 3
@@ -241,6 +259,24 @@
       "side": 1,
       "message": "(ditto with the openlog change – I\u0027ll remove all the Android logging changes if syslog should Just Work now.)",
       "parentUuid": "84a6f6d1_df34bb80",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4eaaeee_4500ea27",
+        "filename": "pppd/utils.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2014-12-11T19:44:42Z",
+      "side": 1,
+      "message": "it should, and it looks like they were trying to actually log stuff themselves, so it\u0027s not like we\u0027ll be guilty of suddenly turning on a log spamhose.",
+      "parentUuid": "c4eaaeee_da9b99db",
       "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
