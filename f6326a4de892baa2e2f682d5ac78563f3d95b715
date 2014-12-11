@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "64d9026f_d498140a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "Sorry. Did a repo upload while unsaved files were still in the editor.",
+      "parentUuid": "84a6f6d1_dfd5dbff",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84a6f6d1_ff02dffd",
         "filename": "pppd/main.c",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-12-11T00:12:36Z",
       "side": 1,
       "message": "doesn\u0027t matter, but this should work fine now.",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4eaaeee_5ab20969",
+        "filename": "pppd/main.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "Should the Android changes around syslog be removed then? I think they should all move as one.",
+      "parentUuid": "84a6f6d1_ff02dffd",
       "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "44d6be40_733e18af",
+        "filename": "pppd/plugins/pppoatm/pppoatm.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "64abc29e_be9d7978",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4a13abc_a05afaf4",
         "filename": "pppd/plugins/rp-pppoe/config.h",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2014-12-11T00:12:36Z",
       "side": 1,
       "message": "(configure usually #defines to 1.)",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44d6be40_133594c4",
+        "filename": "pppd/plugins/rp-pppoe/config.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a13abc_a05afaf4",
       "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "64d9026f_d41ed4d3",
+        "filename": "pppd/pppcrypt.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4a13abc_a0e0ba9f",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64abc29e_7ec5b148",
         "filename": "pppd/sys-linux.c",
         "patchSetId": 3
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "c4870e28_d2d55a73",
+        "filename": "pppd/sys-linux.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "Still needed.\n\nexternal/ppp/pppd/sys-linux.c:2527:22: error: storage size of \u0027rt6\u0027 isn\u0027t known\n     struct in6_rtmsg rt6;",
+      "parentUuid": "64abc29e_7ec5b148",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84a6f6d1_df34bb80",
         "filename": "pppd/utils.c",
         "patchSetId": 3
@@ -115,6 +223,24 @@
       "writtenOn": "2014-12-11T00:12:36Z",
       "side": 1,
       "message": "this should just work too (if you care).",
+      "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4eaaeee_da9b99db",
+        "filename": "pppd/utils.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1019036
+      },
+      "writtenOn": "2014-12-11T19:35:22Z",
+      "side": 1,
+      "message": "(ditto with the openlog change – I\u0027ll remove all the Android logging changes if syslog should Just Work now.)",
+      "parentUuid": "84a6f6d1_df34bb80",
       "revId": "f6326a4de892baa2e2f682d5ac78563f3d95b715",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
