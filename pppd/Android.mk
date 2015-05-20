@@ -41,6 +41,8 @@ LOCAL_CFLAGS := -DCHAPMS=1 -DMPPE=1 -DINET6=1 -DUSE_OPENSSL=1 -Wno-unused-parame
 # Turn off warnings for now until this is fixed upstream. b/18632512
 LOCAL_CFLAGS += -Wno-unused-variable
 
+LOCAL_CFLAGS += -fno-strict-aliasing
+
 LOCAL_MODULE:= pppd
 
 include $(BUILD_EXECUTABLE)
