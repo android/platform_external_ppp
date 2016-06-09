@@ -753,10 +753,10 @@ lcp_addci(f, ucp, lenp)
     if (neg) { \
 	int i; \
 	PUTCHAR(opt, ucp); \
-	PUTCHAR(CILEN_CHAR + len, ucp); \
+	PUTCHAR(CILEN_CHAR + (len), ucp); \
 	PUTCHAR(class, ucp); \
-	for (i = 0; i < len; ++i) \
-	    PUTCHAR(val[i], ucp); \
+	for (i = 0; i < (len); ++i) \
+	    PUTCHAR((val)[i], ucp); \
     }
 
     ADDCISHORT(CI_MRU, go->neg_mru && go->mru != DEFMRU, go->mru);
@@ -814,7 +814,7 @@ lcp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != CILEN_VOID || \
-	    citype != opt) \
+	    citype != (opt)) \
 	    goto bad; \
     }
 #define ACKCISHORT(opt, neg, val) \
@@ -824,10 +824,10 @@ lcp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != CILEN_SHORT || \
-	    citype != opt) \
+	    citype != (opt)) \
 	    goto bad; \
 	GETSHORT(cishort, p); \
-	if (cishort != val) \
+	if (cishort != (val)) \
 	    goto bad; \
     }
 #define ACKCICHAR(opt, neg, val) \
@@ -837,10 +837,10 @@ lcp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != CILEN_CHAR || \
-	    citype != opt) \
+	    citype != (opt)) \
 	    goto bad; \
 	GETCHAR(cichar, p); \
-	if (cichar != val) \
+	if (cichar != (val)) \
 	    goto bad; \
     }
 #define ACKCICHAP(opt, neg, val) \
@@ -866,10 +866,10 @@ lcp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != CILEN_LONG || \
-	    citype != opt) \
+	    citype != (opt)) \
 	    goto bad; \
 	GETLONG(cilong, p); \
-	if (cilong != val) \
+	if (cilong != (val)) \
 	    goto bad; \
     }
 #define ACKCILQR(opt, neg, val) \
@@ -879,31 +879,31 @@ lcp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != CILEN_LQR || \
-	    citype != opt) \
+	    citype != (opt)) \
 	    goto bad; \
 	GETSHORT(cishort, p); \
 	if (cishort != PPP_LQR) \
 	    goto bad; \
 	GETLONG(cilong, p); \
-	if (cilong != val) \
+	if (cilong != (val)) \
 	  goto bad; \
     }
 #define ACKCIENDP(opt, neg, class, val, vlen) \
     if (neg) { \
 	int i; \
-	if ((len -= CILEN_CHAR + vlen) < 0) \
+	if ((len -= CILEN_CHAR + (vlen)) < 0) \
 	    goto bad; \
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
-	if (cilen != CILEN_CHAR + vlen || \
-	    citype != opt) \
+	if (cilen != CILEN_CHAR + (vlen) || \
+	    citype != (opt)) \
 	    goto bad; \
 	GETCHAR(cichar, p); \
-	if (cichar != class) \
+	if (cichar != (class)) \
 	    goto bad; \
-	for (i = 0; i < vlen; ++i) { \
+	for (i = 0; i < (vlen); ++i) { \
 	    GETCHAR(cichar, p); \
-	    if (cichar != val[i]) \
+	    if (cichar != (val)[i]) \
 		goto bad; \
 	} \
     }
@@ -975,7 +975,7 @@ lcp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= CILEN_VOID && \
 	p[1] == CILEN_VOID && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_VOID; \
 	INCPTR(CILEN_VOID, p); \
 	no.neg = 1; \
@@ -985,7 +985,7 @@ lcp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= CILEN_CHAP && \
 	p[1] == CILEN_CHAP && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_CHAP; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
@@ -997,7 +997,7 @@ lcp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= CILEN_CHAR && \
 	p[1] == CILEN_CHAR && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_CHAR; \
 	INCPTR(2, p); \
 	GETCHAR(cichar, p); \
@@ -1008,7 +1008,7 @@ lcp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= CILEN_SHORT && \
 	p[1] == CILEN_SHORT && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_SHORT; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
@@ -1019,7 +1019,7 @@ lcp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= CILEN_LONG && \
 	p[1] == CILEN_LONG && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_LONG; \
 	INCPTR(2, p); \
 	GETLONG(cilong, p); \
@@ -1030,7 +1030,7 @@ lcp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= CILEN_LQR && \
 	p[1] == CILEN_LQR && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_LQR; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
@@ -1041,7 +1041,7 @@ lcp_nakci(f, p, len, treat_as_reject)
 #define NAKCIENDP(opt, neg) \
     if (go->neg && \
 	len >= CILEN_CHAR && \
-	p[0] == opt && \
+	p[0] == (opt) && \
 	p[1] >= CILEN_CHAR && \
 	p[1] <= len) { \
 	len -= p[1]; \
@@ -1363,7 +1363,7 @@ lcp_rejci(f, p, len)
     if (go->neg && \
 	len >= CILEN_VOID && \
 	p[1] == CILEN_VOID && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_VOID; \
 	INCPTR(CILEN_VOID, p); \
 	try.neg = 0; \
@@ -1372,12 +1372,12 @@ lcp_rejci(f, p, len)
     if (go->neg && \
 	len >= CILEN_SHORT && \
 	p[1] == CILEN_SHORT && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_SHORT; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
 	/* Check rejected value. */ \
-	if (cishort != val) \
+	if (cishort != (val)) \
 	    goto bad; \
 	try.neg = 0; \
     }
@@ -1385,7 +1385,7 @@ lcp_rejci(f, p, len)
     if (go->neg && \
 	len >= CILEN_CHAP && \
 	p[1] == CILEN_CHAP && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_CHAP; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
@@ -1400,12 +1400,12 @@ lcp_rejci(f, p, len)
     if (go->neg && \
 	len >= CILEN_LONG && \
 	p[1] == CILEN_LONG && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_LONG; \
 	INCPTR(2, p); \
 	GETLONG(cilong, p); \
 	/* Check rejected value. */ \
-	if (cilong != val) \
+	if (cilong != (val)) \
 	    goto bad; \
 	try.neg = 0; \
     }
@@ -1413,13 +1413,13 @@ lcp_rejci(f, p, len)
     if (go->neg && \
 	len >= CILEN_LQR && \
 	p[1] == CILEN_LQR && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_LQR; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
 	GETLONG(cilong, p); \
 	/* Check rejected value. */ \
-	if (cishort != PPP_LQR || cilong != val) \
+	if (cishort != PPP_LQR || cilong != (val)) \
 	    goto bad; \
 	try.neg = 0; \
     }
@@ -1427,29 +1427,29 @@ lcp_rejci(f, p, len)
     if (go->neg && \
 	len >= CILEN_CBCP && \
 	p[1] == CILEN_CBCP && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= CILEN_CBCP; \
 	INCPTR(2, p); \
 	GETCHAR(cichar, p); \
 	/* Check rejected value. */ \
-	if (cichar != val) \
+	if (cichar != (val)) \
 	    goto bad; \
 	try.neg = 0; \
     }
 #define REJCIENDP(opt, neg, class, val, vlen) \
     if (go->neg && \
-	len >= CILEN_CHAR + vlen && \
-	p[0] == opt && \
-	p[1] == CILEN_CHAR + vlen) { \
+	len >= CILEN_CHAR + (vlen) && \
+	p[0] == (opt) && \
+	p[1] == CILEN_CHAR + (vlen)) { \
 	int i; \
-	len -= CILEN_CHAR + vlen; \
+	len -= CILEN_CHAR + (vlen); \
 	INCPTR(2, p); \
 	GETCHAR(cichar, p); \
-	if (cichar != class) \
+	if (cichar != (class)) \
 	    goto bad; \
-	for (i = 0; i < vlen; ++i) { \
+	for (i = 0; i < (vlen); ++i) { \
 	    GETCHAR(cichar, p); \
-	    if (cichar != val[i]) \
+	    if (cichar != (val)[i]) \
 		goto bad; \
 	} \
 	try.neg = 0; \

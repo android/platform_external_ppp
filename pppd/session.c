@@ -89,7 +89,7 @@
 #include <security/pam_appl.h>
 #endif /* #ifdef USE_PAM */
 
-#define SET_MSG(var, msg) if (var != NULL) { var[0] = msg; }
+#define SET_MSG(var, msg) if ((var) != NULL) { (var)[0] = msg; }
 #define COPY_STRING(s) ((s) ? strdup(s) : NULL)
 
 #define SUCCESS_MSG "Session started successfully"

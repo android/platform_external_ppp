@@ -548,8 +548,8 @@ ipv6cp_cilen(f)
 {
     ipv6cp_options *go = &ipv6cp_gotoptions[f->unit];
 
-#define LENCIVJ(neg)		(neg ? CILEN_COMPRESS : 0)
-#define LENCIIFACEID(neg)	(neg ? CILEN_IFACEID : 0)
+#define LENCIVJ(neg)		((neg) ? CILEN_COMPRESS : 0)
+#define LENCIIFACEID(neg)	((neg) ? CILEN_IFACEID : 0)
 
     return (LENCIIFACEID(go->neg_ifaceid) +
 	    LENCIVJ(go->neg_vj));
@@ -577,7 +577,7 @@ ipv6cp_addci(f, ucp, lenp)
 	    PUTSHORT(val, ucp); \
 	    len -= vjlen; \
 	} else \
-	    neg = 0; \
+	    (neg) = 0; \
     }
 
 #define ADDCIIFACEID(opt, neg, val1) \
@@ -589,7 +589,7 @@ ipv6cp_addci(f, ucp, lenp)
 	    eui64_put(val1, ucp); \
 	    len -= idlen; \
 	} else \
-	    neg = 0; \
+	    (neg) = 0; \
     }
 
     ADDCIIFACEID(CI_IFACEID, go->neg_ifaceid, go->ourid);
@@ -631,10 +631,10 @@ ipv6cp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != vjlen || \
-	    citype != opt)  \
+	    citype != (opt))  \
 	    goto bad; \
 	GETSHORT(cishort, p); \
-	if (cishort != val) \
+	if (cishort != (val)) \
 	    goto bad; \
     }
 
@@ -646,7 +646,7 @@ ipv6cp_ackci(f, p, len)
 	GETCHAR(citype, p); \
 	GETCHAR(cilen, p); \
 	if (cilen != idlen || \
-	    citype != opt) \
+	    citype != (opt)) \
 	    goto bad; \
 	eui64_get(ifaceid, p); \
 	if (! eui64_equals(val1, ifaceid)) \
@@ -704,7 +704,7 @@ ipv6cp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	len >= (cilen = CILEN_IFACEID) && \
 	p[1] == cilen && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= cilen; \
 	INCPTR(2, p); \
 	eui64_get(ifaceid, p); \
@@ -716,7 +716,7 @@ ipv6cp_nakci(f, p, len, treat_as_reject)
     if (go->neg && \
 	((cilen = p[1]) == CILEN_COMPRESS) && \
 	len >= cilen && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= cilen; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
@@ -838,7 +838,7 @@ ipv6cp_rejci(f, p, len)
     if (go->neg && \
 	len >= (cilen = CILEN_IFACEID) && \
 	p[1] == cilen && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= cilen; \
 	INCPTR(2, p); \
 	eui64_get(ifaceid, p); \
@@ -852,12 +852,12 @@ ipv6cp_rejci(f, p, len)
     if (go->neg && \
 	p[1] == CILEN_COMPRESS && \
 	len >= p[1] && \
-	p[0] == opt) { \
+	p[0] == (opt)) { \
 	len -= p[1]; \
 	INCPTR(2, p); \
 	GETSHORT(cishort, p); \
 	/* Check rejected value. */  \
-	if (cishort != val) \
+	if (cishort != (val)) \
 	    goto bad; \
 	try.neg = 0; \
      }

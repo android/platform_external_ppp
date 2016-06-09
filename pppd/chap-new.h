@@ -71,7 +71,7 @@ extern int chap_mdtype_all;
     0
 
 /* Return the bit flag (lsb set) for our most preferred digest type. */
-#define CHAP_MDTYPE(mdtype) ((mdtype) ^ ((mdtype) - 1)) & (mdtype)
+#define CHAP_MDTYPE(mdtype) (((mdtype) ^ ((mdtype) - 1)) & (mdtype))
 
 /* Return the bit flag for a given digest algorithm ID. */
 #define CHAP_MDTYPE_D(digest) \
@@ -82,10 +82,10 @@ extern int chap_mdtype_all;
 
 /* Can we do the requested digest? */
 #define CHAP_CANDIGEST(mdtype, digest) \
-    ((digest) == CHAP_MICROSOFT_V2)? (mdtype) & MDTYPE_MICROSOFT_V2: \
+    (((digest) == CHAP_MICROSOFT_V2)? (mdtype) & MDTYPE_MICROSOFT_V2: \
     ((digest) == CHAP_MICROSOFT)? (mdtype) & MDTYPE_MICROSOFT: \
     ((digest) == CHAP_MD5)? (mdtype) & MDTYPE_MD5: \
-    0
+    0)
 
 /*
  * The code for each digest type has to supply one of these.

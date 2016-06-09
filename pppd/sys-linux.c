@@ -158,9 +158,9 @@ struct in6_ifreq {
 #endif
 
 #define IN6_LLADDR_FROM_EUI64(sin6, eui64) do {			\
-	memset(&sin6.s6_addr, 0, sizeof(struct in6_addr));	\
-	sin6.s6_addr16[0] = htons(0xfe80);			\
-	eui64_copy(eui64, sin6.s6_addr32[2]);			\
+	memset(&(sin6).s6_addr, 0, sizeof(struct in6_addr));	\
+	(sin6).s6_addr16[0] = htons(0xfe80);			\
+	eui64_copy(eui64, (sin6).s6_addr32[2]);			\
 	} while (0)
 
 #if defined(__ANDROID__)
@@ -255,7 +255,7 @@ extern u_char	inpacket_buf[];	/* borrowed from main.c */
 
 #define SET_SA_FAMILY(addr, family)			\
     memset ((char *) &(addr), '\0', sizeof(addr));	\
-    addr.sa_family = (family);
+    (addr).sa_family = (family);
 
 /*
  * Determine if the PPP connection should still be present.

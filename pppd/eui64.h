@@ -93,12 +93,12 @@ typedef union
 				} while (eui64_equals(x, y))
 
 #define eui64_get(ll, cp)	do {				\
-				eui64_copy((*cp), (ll));	\
+				eui64_copy((*(cp)), (ll));	\
 				(cp) += sizeof(eui64_t);	\
 				} while (0)
 
 #define eui64_put(ll, cp)	do {				\
-				eui64_copy((ll), (*cp));	\
+				eui64_copy((ll), (*(cp)));	\
 				(cp) += sizeof(eui64_t);	\
 				} while (0)
 
