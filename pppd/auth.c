@@ -121,7 +121,7 @@ static const char rcsid[] = RCSID;
 #define NONWILD_SERVER	1
 #define NONWILD_CLIENT	2
 
-#define ISWILD(word)	(word[0] == '*' && word[1] == 0)
+#define ISWILD(word)	((word)[0] == '*' && (word)[1] == 0)
 
 /* The name by which the peer authenticated itself to us. */
 char peer_authname[MAXNAMELEN];
