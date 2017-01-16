@@ -31,7 +31,6 @@
 #include "ccp.h"
 #include "ipcp.h"
 #include <sys/stat.h>
-#include <net/if.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -44,8 +43,12 @@
 #endif
 #include <linux/types.h>
 #include <linux/if_ether.h>
-#include <linux/ppp_defs.h>
-#include <linux/if_ppp.h>
+
+#define IFNAMSIZ 16
+#include <net/ppp_defs.h>
+#include <net/if_ppp.h>
+
+#include <net/if.h>
 #include <linux/if_pppox.h>
 #include <linux/if_pppol2tp.h>
 
