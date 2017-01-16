@@ -31,7 +31,6 @@
 #include "ccp.h"
 #include "ipcp.h"
 #include <sys/stat.h>
-#include <net/if.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -44,8 +43,12 @@
 #endif
 #include <linux/types.h>
 #include <linux/if_ether.h>
-#include <linux/ppp_defs.h>
-#include <linux/if_ppp.h>
+
+#define IFNAMSIZ 16
+#include <net/ppp_defs.h>
+#include <net/if_ppp.h>
+
+#include <net/if.h>
 #include <linux/if_pppox.h>
 #include <linux/if_pppol2tp.h>
 
@@ -121,10 +124,10 @@ static int setdevname_pppol2tp(char **argv)
 		char buffer[128];
 		struct sockaddr pppol2tp;
 	} s;
-	int len = sizeof(s);
+	socklen_t len = sizeof(s);
 	char **a;
 	int tmp;
-	int tmp_len = sizeof(tmp);
+	socklen_t tmp_len = sizeof(tmp);
 
 	if (device_got_set)
 		return 0;
