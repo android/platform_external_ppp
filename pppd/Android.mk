@@ -1,3 +1,8 @@
+# Flags common to both pppd and plugins
+COMMON_CFLAGS := -DCHAPMS=1 -DMPPE=1 -DINET6=1 -DUSE_OPENSSL=1		\
+	-Wno-missing-field-initializers -Wno-unused-parameter -Werror	\
+	-Wno-pointer-sign
+
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
@@ -36,15 +41,26 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/include
 
-LOCAL_CFLAGS := -DCHAPMS=1 -DMPPE=1 -DINET6=1 -DUSE_OPENSSL=1 -Wno-unused-parameter -Wno-empty-body -Wno-missing-field-initializers -Wno-attributes -Wno-sign-compare -Wno-pointer-sign -Werror
-
-# Turn off warnings for now until this is fixed upstream. b/18632512
-LOCAL_CFLAGS += -Wno-unused-variable
+LOCAL_CFLAGS := $(COMMON_CFLAGS)
+LOCAL_CFLAGS += -Wno-empty-body -Wno-attributes -Wno-sign-compare
 
 # Enable plugin support
 LOCAL_CFLAGS += -DPLUGIN
 LOCAL_LDFLAGS := -ldl -rdynamic
 
 LOCAL_MODULE:= pppd
+LOCAL_REQUIRED_MODULES := pppol2tp-android
 
 include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := pppol2tp-android
+LOCAL_SRC_FILES := plugins/pppol2tp-android/pppol2tp-android.c
+LOCAL_C_INCLUDES := \
+	$(LOCAL_PATH) \
+	$(LOCAL_PATH)/include \
+	$(LOCAL_PATH)/plugins/pppol2tp-android
+LOCAL_CFLAGS := $(COMMON_CFLAGS)
+LOCAL_CFLAGS += -Wno-gnu-designator -Wno-format
+LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
+include $(BUILD_SHARED_LIBRARY)
