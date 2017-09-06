@@ -1731,12 +1731,12 @@ user_unsetenv(argv)
     struct userenv *uep, **insp;
     char *arg = argv[0];
 
-    if (strchr(arg, '=') != NULL) {
-	option_error("unexpected = in name: %s", arg);
+    if (!arg || *arg == '\0') {
+	option_error("missing variable name for unset");
 	return 0;
     }
-    if (arg == '\0') {
-	option_error("missing variable name for unset");
+    if (strchr(arg, '=') != NULL) {
+	option_error("unexpected = in name: %s", arg);
 	return 0;
     }
     for (uep = userenv_list; uep != NULL; uep = uep->ue_next) {
