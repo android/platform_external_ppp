@@ -90,9 +90,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#if defined(__ANDROID__)
-#include <cutils/properties.h>
-#endif
 
 #include "pppd.h"
 #include "magic.h"
