@@ -55,11 +55,17 @@
 #endif
 #endif /* __STDC__ */
 
+#if defined(__LP64__)
+#define LIB_DIR		"lib64"
+#else
+#define LIB_DIR		"lib"
+#endif
+
 #ifdef PLUGIN
 #ifdef __STDC__
-#define _PATH_PLUGIN	DESTDIR "/lib/pppd/" VERSION
+#define _PATH_PLUGIN	DESTDIR "/" LIB_DIR "/pppd/" VERSION
 #else /* __STDC__ */
-#define _PATH_PLUGIN	"/usr/lib/pppd"
+#define _PATH_PLUGIN	"/usr/" LIB_DIR "/pppd"
 #endif /* __STDC__ */
 
 #endif /* PLUGIN */
