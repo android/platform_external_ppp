@@ -63,9 +63,9 @@
 
 #ifdef PLUGIN
 #ifdef __STDC__
-#define _PATH_PLUGIN	DESTDIR "/" LIB_DIR "/pppd/" VERSION
+#define _PATH_PLUGIN	DESTDIR "/" LIB_DIR
 #else /* __STDC__ */
-#define _PATH_PLUGIN	"/usr/" LIB_DIR "/pppd"
+#define _PATH_PLUGIN	"/usr/" LIB_DIR
 #endif /* __STDC__ */
 
 #endif /* PLUGIN */
