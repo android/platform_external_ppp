@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d80eae7_63918a88",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-04-26T03:14:00Z",
+      "side": 0,
+      "message": "Out of curiosity, why did you have to do this? If we\u0027d included net/if.h here we probably would have an IFNAMSIZ definition.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
