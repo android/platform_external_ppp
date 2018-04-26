@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6aa3b256_d7d18fca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-04-26T23:10:11Z",
+      "side": 1,
+      "message": "include the error message here? it\u0027s often preferable to just add -Wno-\u003cwhatever\u003e to the makefile rather than add deviations from upstream if we don\u0027t need them.\n\n(and if we do, i want to check that we shouldn\u0027t be fixing bionic instead :-) )",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
