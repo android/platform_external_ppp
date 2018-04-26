@@ -22,6 +22,30 @@
       "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "614a5d28_ea3ebada",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-04-26T15:05:27Z",
+      "side": 0,
+      "message": "Just checked it. IFNAMSIZ is not going to be defined by including net/if.h. IFNAMESIZE (which is another definition) -- yes, but not IFNAMSIZ. Anyway, just including net/if.h here and removing IFNAMSIZ definition below leads to next build errors: https://pastebin.ubuntu.com/p/6gBJDxdyfm/ . I suggest leaving this code as it is, if it\u0027s not critical.",
+      "parentUuid": "8d80eae7_63918a88",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
