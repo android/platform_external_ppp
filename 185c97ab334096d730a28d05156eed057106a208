@@ -22,6 +22,30 @@
       "revId": "185c97ab334096d730a28d05156eed057106a208",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed5e8c29_c5c5cc44",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-04-26T15:17:16Z",
+      "side": 0,
+      "message": "Here I\u0027m just moving those flags to COMMON_CFLAGS var, to use them to build both pppd binary and pppol2tp plugin. In previous patch we didn\u0027t have the commands for building the plugin yet, so there wasn\u0027t much sense in adding COMMON_FLAGS variable, as we only had one binary built in Android.mk (pppd). Hope I understood your question correctly :)",
+      "parentUuid": "a2bab0b4_b64a2139",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "185c97ab334096d730a28d05156eed057106a208",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
