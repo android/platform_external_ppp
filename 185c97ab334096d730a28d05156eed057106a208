@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2bab0b4_b64a2139",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-04-26T03:23:40Z",
+      "side": 0,
+      "message": "Didn\u0027t you add this in the CL before this one? Should the two be squashed?",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "185c97ab334096d730a28d05156eed057106a208",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
