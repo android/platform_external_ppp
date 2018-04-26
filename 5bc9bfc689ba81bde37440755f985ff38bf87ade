@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c80ceb3_5704c8ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-04-26T23:11:41Z",
+      "side": 1,
+      "message": "where is \"mainline ppp project\"? https://github.com/paulusmack/ppp/blob/master/pppd/ ?\n\nif so, could you fix the README.version file too?\n\n(if this is moving us *closer* to current upstream, i\u0027m happy to +2...)",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
