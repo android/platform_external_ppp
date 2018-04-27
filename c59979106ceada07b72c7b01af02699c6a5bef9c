@@ -70,6 +70,30 @@
       "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "261b15e9_db738ff4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-04-27T20:30:36Z",
+      "side": 1,
+      "message": "Ok, here is the build log with errors: https://pastebin.ubuntu.com/p/3sYx2TgYtG/\n\n(too long to paste here inline, hope you don\u0027t mind using pastebin).\n\nTo me, doesn\u0027t look like something worth fixing... Anyway, if you still want me to re-send my patch with these errors included, please let me know and specify which lines to include, and I\u0027ll do it at May 3rd or so (I\u0027d avoid it, if possible).",
+      "parentUuid": "2e20d625_f35fc29d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
