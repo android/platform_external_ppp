@@ -22,6 +22,30 @@
       "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "659b59f3_7dab00a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-04-27T20:20:29Z",
+      "side": 1,
+      "message": "Yes, and main site is: https://ppp.samba.org/\n\nCan I do that as a separate commit, after this patch series is merged? At this point, I\u0027m really scared to touch anything, with all \"+1\"s, security review and testing done in Google :)\n\nAnd yes, the whole point of this patch series is to move us closer to upstream. If you are interested, here is my work log:\n\n    https://wiki.linaro.org/LMG/Kernel/PPP\n\nAlso I can send you my slides for two presentations I did on Linaro Connect, explaining why we are doing that and how does it work.",
+      "parentUuid": "2c80ceb3_5704c8ae",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
