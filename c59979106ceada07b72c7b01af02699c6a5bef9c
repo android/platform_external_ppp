@@ -46,6 +46,30 @@
       "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e20d625_f35fc29d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-04-27T20:11:23Z",
+      "side": 1,
+      "message": "yeah, what are the errors? we should always include them in checkin comments claiming to fix errors, not least so the reviewers can check whether this is the right fix, and can work out what to do about upstreaming the patches if so.\n\n(i wouldn\u0027t worry too much about +1s ... no number of +1s adds up to +2 in gerrit arithmetic :-) )",
+      "parentUuid": "7cac7b2e_05ae01c0",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
