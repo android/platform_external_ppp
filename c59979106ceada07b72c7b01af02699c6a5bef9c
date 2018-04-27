@@ -22,6 +22,30 @@
       "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cac7b2e_05ae01c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-04-27T20:08:39Z",
+      "side": 1,
+      "message": "Without these changes the build is failing with compilation errors, not just warnings. So adding -Wno won\u0027t help in this case. Please understand, it was *really* hard for me to collect all those \"+1\"s (it took me 2 years of waiting actually), so I\u0027d prefer not to send one more series, if it\u0027s not super-needed. I can reproduce old error messages and send it to you, if you want me to, though.",
+      "parentUuid": "6aa3b256_d7d18fca",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
