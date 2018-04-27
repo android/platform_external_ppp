@@ -46,6 +46,30 @@
       "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da823275_f8ff49a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-04-27T20:48:24Z",
+      "side": 1,
+      "message": "excellent! in that case rest assured that you have my full attention, and that of my new guy starting next tuesday whose job it is to help clean up some of the messes we\u0027ve gotten ourselves into in external/ :-)\n\n(you don\u0027t need to motivate the _why_ for me, but if you have links to your slides i\u0027ll read them anyway!)",
+      "parentUuid": "659b59f3_7dab00a3",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
