@@ -94,6 +94,30 @@
       "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf8e5a3d_5cf01263",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-04-27T20:42:29Z",
+      "side": 1,
+      "message": "so that looks like we\u0027re building pppd wrong... i don\u0027t think we should be changing this file. isn\u0027t the USING_UAPI stuff in ppd\u0027s include/net/ppp_defs.h meant to avoid exactly those errors?",
+      "parentUuid": "261b15e9_db738ff4",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
