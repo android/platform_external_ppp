@@ -118,6 +118,30 @@
       "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c30a8e7d_cb41dbf0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-05T21:14:12Z",
+      "side": 1,
+      "message": "Understood. We can use next two patches instead of this one:\n - patch #1: https://pastebin.com/V3gWccpN\n - patch #2: https://pastebin.com/GCy6q41W\n\nI\u0027m thinking about next steps:\n 1. Throw away currently discussed patch\n 2. Apply patch #1 as a new separate patch\n 3. Merge patch #2 into this one:\n    https://android-review.googlesource.com/c/platform/external/ppp/+/330809\n    and adding corresponding commit message from patch #2\n 4. Send patch series #2\n\nDo you think new patches are ok? If so, should I abandon the whole series and send v2?",
+      "parentUuid": "bf8e5a3d_5cf01263",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "c59979106ceada07b72c7b01af02699c6a5bef9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
