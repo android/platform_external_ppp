@@ -130,6 +130,14 @@ typedef u_int32_t	ext_accm[8];
 /*
  * What to do with network protocol (NP) packets.
  */
+#if defined(__ANDROID__)
+# include <net/if.h>
+# include <linux/ppp_defs.h>
+# ifndef USING_UAPI
+#  define USING_UAPI
+# endif
+#endif
+
 #if defined(USING_UAPI)
 /* This stuff isn't in uapi. TODO: is there a newer pppd that doesn't use this? */
 #define ifr__name b.ifr_ifrn.ifrn_name
