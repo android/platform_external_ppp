@@ -38,6 +38,10 @@
 #ifndef _PPP_DEFS_H_
 #define _PPP_DEFS_H_
 
+#if defined(__linux__)
+#include <linux/ppp_defs.h>
+#endif
+
 #if defined(PPP_ADDRESS)
 #define USING_UAPI
 #endif
@@ -131,6 +135,10 @@ typedef u_int32_t	ext_accm[8];
  * What to do with network protocol (NP) packets.
  */
 #if defined(USING_UAPI)
+
+/* For struct ifreq */
+#include <net/if.h>
+
 /* This stuff isn't in uapi. TODO: is there a newer pppd that doesn't use this? */
 #define ifr__name b.ifr_ifrn.ifrn_name
 #define stats_ptr b.ifr_ifru.ifru_data
