@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "694c3fb8_824bdd0e",
+        "filename": "pppd/pathnames.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-05-07T18:19:04Z",
+      "side": 1,
+      "message": "where is DESTDIR getting set?\n\nand why isn\u0027t the right fix to just point DESTDIR to a pppd-specific directory? (that seems to fit better with what upstream assumes.)",
+      "revId": "9230f7ebd245fe54f62f97876da4f90aa526ece8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
