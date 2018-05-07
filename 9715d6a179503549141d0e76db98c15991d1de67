@@ -22,6 +22,30 @@
       "revId": "9715d6a179503549141d0e76db98c15991d1de67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f919a7e_cd406080",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-07T20:37:02Z",
+      "side": 1,
+      "message": "Ok, will do. I just wanted to keep the history of issues I resolved when trying to make that plugin work in Android. Like some kind of a work log for a people who would need to do similar thing. But ok, I can squash it to one commit and provide as much info about it as I can. Hope it works for you.",
+      "parentUuid": "cf77f857_f863a3b4",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "9715d6a179503549141d0e76db98c15991d1de67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
