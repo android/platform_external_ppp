@@ -46,6 +46,30 @@
       "revId": "9715d6a179503549141d0e76db98c15991d1de67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0da59d7_817a53a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-05-07T20:53:38Z",
+      "side": 1,
+      "message": "yeah, i think that makes more sense. the commit message seems like the right place to talk about alternatives that were rejected/plans that didn\u0027t work out.\n\n(i wish more people would include those details in their commit messages, for when we\u0027re scratching our heads 5 years later :-) )",
+      "parentUuid": "6f919a7e_cd406080",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "9715d6a179503549141d0e76db98c15991d1de67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
