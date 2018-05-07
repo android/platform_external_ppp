@@ -16,6 +16,24 @@
       "revId": "9230f7ebd245fe54f62f97876da4f90aa526ece8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39e582da_eb4bf268",
+        "filename": "pppd/pathnames.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-07T20:29:51Z",
+      "side": 1,
+      "message": "1. DESTDIR is derived from Android.mk file. In this commit, source code is not ready to be built for Android yet, so I haven\u0027t added commands for building pppol2tp plugin to Android.mk. I\u0027m trying to keep each commit build-able, so I\u0027m only adding commands for actual build in the last commit of this patch series. In this commit I\u0027m only preparing source code for further build. In upstream pppd project, DESTDIR is being set by \"configure\" script.\n\n2. Upstream uses DESTDIR to provide the way for a user to configure install prefix (like /usr or /usr/local). That\u0027s how I\u0027m using it in our case: setting DESTDIR to /system in further patches.\n\nThe whole point of this patch is to figure out, which directory to use, lib or lib64. And it\u0027s only possible from code, as I understand (it\u0027s tested on 32-bit and 64-bit boards from my side, and in Google lab, so I suggest keep it as it is). Also, as you can see, in upstream code (before this patch) they also keep /lib part not in DESTDIR, but hardcoded to _PATH_PLUGIN. This _PATH_PLUGIN path is further being used for pppd binary to figure out where to search for pppol2tp.so plugin. Btw, in my x86_64 Debian I can see pppol2tp.so in /lib, not in /lib64, but in ARM64 Android it\u0027s being installed to /lib64. That\u0027s why this patch is needed.\n\nTaking all that into the account, please tell me what would you want me to do with this patch?",
+      "parentUuid": "694c3fb8_824bdd0e",
+      "revId": "9230f7ebd245fe54f62f97876da4f90aa526ece8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
