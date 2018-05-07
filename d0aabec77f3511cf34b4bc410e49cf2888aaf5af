@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "797b4615_ff5e133e",
+        "filename": "pppd/pathnames.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-05-07T18:21:33Z",
+      "side": 1,
+      "message": "instead of two changes moving this first one way and then another, should this be another __ANDROID__ that just treats /system/lib and /system/lib64 as the special case and leaves the rest alone (and doesn\u0027t introduce LIB_DIR, which no-one else needs)?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "d0aabec77f3511cf34b4bc410e49cf2888aaf5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
