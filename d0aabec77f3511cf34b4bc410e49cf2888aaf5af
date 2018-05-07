@@ -22,6 +22,30 @@
       "revId": "d0aabec77f3511cf34b4bc410e49cf2888aaf5af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22e8b80e_bbb3efda",
+        "filename": "pppd/pathnames.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-07T20:39:37Z",
+      "side": 1,
+      "message": "Agreed. Let me rework it. Will send new series soon.",
+      "parentUuid": "797b4615_ff5e133e",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 0
+      },
+      "revId": "d0aabec77f3511cf34b4bc410e49cf2888aaf5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
