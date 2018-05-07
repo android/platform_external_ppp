@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf77f857_f863a3b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-05-07T18:23:54Z",
+      "side": 1,
+      "message": "this doesn\u0027t seem to match reality. (i think we\u0027d be better off with just having one change rather than three for setting the library location.)",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "9715d6a179503549141d0e76db98c15991d1de67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
