@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "1e9f1a91_5fa420b3",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T14:49:24Z",
+      "side": 1,
+      "message": "Grepping the external/ directory by this line show there is already a lot of GPL code there. Dmitry, can you please comment this?",
+      "parentUuid": "6ba2c919_e134b626",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b469978b_8251ae95",
         "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
         "patchSetId": 2
@@ -107,6 +131,30 @@
       "writtenOn": "2018-05-08T06:50:53Z",
       "side": 1,
       "message": "There is no /tmp/ on android. Is this fixed in a future change? Or do we not need it?",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72a01ed4_f4ca1fd8",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T14:49:24Z",
+      "side": 1,
+      "message": "This whole file is only used in openl2tp.c, which we don\u0027t even compile. Let\u0027s leave it as is to keep the code as close to upstream as possible. I could remove these two files, but decided to copy the whole pppol2tp/ directory from upstream project. I can still remove these files in next submission, if you want me to.",
+      "parentUuid": "b469978b_8251ae95",
       "range": {
         "startLine": 42,
         "startChar": 37,
