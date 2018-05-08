@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "89436a6c_2d7f2550",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T21:29:25Z",
+      "side": 1,
+      "message": "Ok, will fix it in next series.",
+      "parentUuid": "3e9c4e39_d55051ad",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "082d2738_8b1d3d63",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
@@ -191,6 +215,30 @@
     },
     {
       "key": {
+        "uuid": "f7ebd418_8612cac2",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T21:29:25Z",
+      "side": 1,
+      "message": "Will fix in next series.",
+      "parentUuid": "0aab975e_f860f2fb",
+      "range": {
+        "startLine": 365,
+        "startChar": 18,
+        "endLine": 365,
+        "endChar": 19
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbc55fcf_8a4dd10a",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
@@ -226,6 +274,30 @@
       "side": 1,
       "message": "Replied above. If you still want me to fix this, I can do that, though it may be needed only for security reasons, and we\u0027ll need to upstream that.",
       "parentUuid": "cbc55fcf_8a4dd10a",
+      "range": {
+        "startLine": 388,
+        "startChar": 28,
+        "endLine": 388,
+        "endChar": 40
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49a69bd8_e46f482c",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T21:29:25Z",
+      "side": 1,
+      "message": "Will fix in next series.",
+      "parentUuid": "50cd91ce_f127a907",
       "range": {
         "startLine": 388,
         "startChar": 28,
