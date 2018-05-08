@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27729a18_def8f229",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T06:50:53Z",
+      "side": 1,
+      "message": "Could this underflow?",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 22
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e3e3657_f8fca369",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T06:50:53Z",
+      "side": 1,
+      "message": "If the passed-in len is 2 or 3, this is reading past the end of the buffer.",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "082d2738_8b1d3d63",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T06:50:53Z",
+      "side": 1,
+      "message": "Looks like this can read up to two bytes past the end of the buffer.",
+      "range": {
+        "startLine": 365,
+        "startChar": 18,
+        "endLine": 365,
+        "endChar": 19
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbc55fcf_8a4dd10a",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T06:50:53Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 388,
+        "startChar": 28,
+        "endLine": 388,
+        "endChar": 40
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

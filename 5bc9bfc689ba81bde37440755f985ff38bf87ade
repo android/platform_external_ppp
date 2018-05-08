@@ -70,6 +70,52 @@
       "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ba2c919_e134b626",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T06:50:53Z",
+      "side": 1,
+      "message": "Looks like we\u0027re adding new GPL code to an existing gerrit repository that previously did not contain any GPL code.\n\nI don\u0027t think we can just do that as is - at least we\u0027ll need some metadata that says this code is GPL. Elliott, do you know what right process is here?",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b469978b_8251ae95",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T06:50:53Z",
+      "side": 1,
+      "message": "There is no /tmp/ on android. Is this fixed in a future change? Or do we not need it?",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
