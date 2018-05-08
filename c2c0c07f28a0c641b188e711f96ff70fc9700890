@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "943a0624_10ab4078",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T22:01:10Z",
+      "side": 1,
+      "message": "I checked: pppol2tp_lcp_snoop() is only used in LNS mode, and we don\u0027t use LNS mode, so all comments about this function is not relevant.",
+      "parentUuid": "1e67474e_ae877817",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 22
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7e3e3657_f8fca369",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Ok, will fix it in next series.",
       "parentUuid": "3e9c4e39_d55051ad",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35d47ad8_62909aba",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T22:01:10Z",
+      "side": 1,
+      "message": "I checked: pppol2tp_lcp_snoop() is only used in LNS mode, and we don\u0027t use LNS mode, so all comments about this function is not relevant.",
+      "parentUuid": "89436a6c_2d7f2550",
       "range": {
         "startLine": 316,
         "startChar": 0,
@@ -239,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "940a6d1a_e7485cda",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T22:01:10Z",
+      "side": 1,
+      "message": "I checked: pppol2tp_lcp_snoop() is only used in LNS mode, and we don\u0027t use LNS mode, so all comments about this function is not relevant.",
+      "parentUuid": "f7ebd418_8612cac2",
+      "range": {
+        "startLine": 365,
+        "startChar": 18,
+        "endLine": 365,
+        "endChar": 19
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cbc55fcf_8a4dd10a",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
@@ -298,6 +370,30 @@
       "side": 1,
       "message": "Will fix in next series.",
       "parentUuid": "50cd91ce_f127a907",
+      "range": {
+        "startLine": 388,
+        "startChar": 28,
+        "endLine": 388,
+        "endChar": 40
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd50b1e5_4e51ed30",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T22:01:10Z",
+      "side": 1,
+      "message": "I checked: pppol2tp_lcp_snoop() is only used in LNS mode, and we don\u0027t use LNS mode, so all comments about this function is not relevant.",
+      "parentUuid": "49a69bd8_e46f482c",
       "range": {
         "startLine": 388,
         "startChar": 28,
