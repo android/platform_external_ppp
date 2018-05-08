@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "a062e12d_6f826bbc",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-05-08T19:50:14Z",
+      "side": 1,
+      "message": "ah, sorry i assumed this project was already GPL.\n\nthere are _some_ GPL projects in external, but you can\u0027t mix them. you\u0027ll need BSD source to import here.",
+      "parentUuid": "1e9f1a91_5fa420b3",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b469978b_8251ae95",
         "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
         "patchSetId": 2
