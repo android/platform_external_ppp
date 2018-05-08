@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "92c55ee0_e28c874a",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T21:19:53Z",
+      "side": 1,
+      "message": "Ok, I will try to contact the author of pppol2tp plugin, asking to re-license it under BSD/MIT. Not sure what is plan B for case if he won\u0027t agree or if there is no answer, though...",
+      "parentUuid": "a062e12d_6f826bbc",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b469978b_8251ae95",
         "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
         "patchSetId": 2
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "SGTM.",
       "parentUuid": "72a01ed4_f4ca1fd8",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad6be98c_60581107",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-08T21:19:53Z",
+      "side": 1,
+      "message": "So, remove not used files or leave as is?",
+      "parentUuid": "0be6b135_bc9050be",
       "range": {
         "startLine": 42,
         "startChar": 37,
