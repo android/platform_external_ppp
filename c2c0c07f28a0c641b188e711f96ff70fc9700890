@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "3e9c4e39_d55051ad",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T15:07:26Z",
+      "side": 1,
+      "message": "Ah, I see. Yes, it\u0027s not reading past the end of the buffer. But it\u0027s still reading past the passed-in length. So it\u0027s potentially reading garbage (or, more precisely, the contents of a previously-received packet).",
+      "parentUuid": "fd698a23_daf953e9",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "082d2738_8b1d3d63",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "I really doubt it. I draw a picture of this packet: https://image.ibb.co/fZHein/ppp_buf.png . From here you can see there won\u0027t be \"out of bounds\" access here. If packet was malformed intentionally, there may be the case of \"out-of-bounds\". We can fix it, but in that case, we\u0027d need to upstream that change. Also, I\u0027m not quite sure this function is being called at all. So, do you want me to fix it or we should leave it as is?",
       "parentUuid": "082d2738_8b1d3d63",
+      "range": {
+        "startLine": 365,
+        "startChar": 18,
+        "endLine": 365,
+        "endChar": 19
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0aab975e_f860f2fb",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T15:07:26Z",
+      "side": 1,
+      "message": "Yes, the concern here was an intentionally malformed packet. After all, PPP receives data from the network and there could be hostile actors there.\n\nIf this code is not being called there\u0027s no need to fix it. If this code is being called, then we might need to determine whether there\u0027s any security impact. danielaustin@ could you take a look?",
+      "parentUuid": "b984c575_16a60795",
       "range": {
         "startLine": 365,
         "startChar": 18,

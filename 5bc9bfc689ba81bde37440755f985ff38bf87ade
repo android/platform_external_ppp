@@ -164,6 +164,30 @@
       "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0be6b135_bc9050be",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T15:07:26Z",
+      "side": 1,
+      "message": "SGTM.",
+      "parentUuid": "72a01ed4_f4ca1fd8",
+      "range": {
+        "startLine": 42,
+        "startChar": 37,
+        "endLine": 42,
+        "endChar": 61
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
