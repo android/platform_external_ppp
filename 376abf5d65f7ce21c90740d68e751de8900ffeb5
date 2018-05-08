@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "476d0a8c_4e68e2d9",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T07:04:38Z",
+      "side": 1,
+      "message": "Is there a reason we can\u0027t add these to COMMON_CFLAGS? Is it because the plugin doesn\u0027t compile with these warnings turned on? Might want to add a comment.",
+      "range": {
+        "startLine": 45,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 65
+      },
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d09d156_0183caae",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T07:04:38Z",
+      "side": 1,
+      "message": "Pre-existing, but this comment would be more readable if said \"Use -Wno-unused-variable instead of -Wno-unused until this is fixed upstream\".",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68549f2d_6407bf26",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T07:04:38Z",
+      "side": 1,
+      "message": "Is there a reason this can\u0027t go into COMMON_CFLAGS above?",
+      "range": {
+        "startLine": 48,
+        "startChar": 16,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b91c5304_9244e992",
         "filename": "pppd/Android.mk",
         "patchSetId": 4
@@ -13,6 +82,24 @@
       "writtenOn": "2018-05-07T23:37:21Z",
       "side": 1,
       "message": "isn\u0027t this handled in the .h file now, and no longer needed here?",
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ade90f_e3717489",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-08T07:04:38Z",
+      "side": 1,
+      "message": "+1, it would be good to define this only in one place.",
+      "parentUuid": "b91c5304_9244e992",
       "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
