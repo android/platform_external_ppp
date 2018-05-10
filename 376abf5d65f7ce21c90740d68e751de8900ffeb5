@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "08b98f71_f623426f",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-10T10:11:41Z",
+      "side": 1,
+      "message": "Ah, true. SGTM.",
+      "parentUuid": "5d9d40b7_bacf4d7b",
+      "range": {
+        "startLine": 45,
+        "startChar": 16,
+        "endLine": 45,
+        "endChar": 65
+      },
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d09d156_0183caae",
         "filename": "pppd/Android.mk",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "The original comment makes more sense to me, be -Wno disables warnings, not enables them. If I\u0027m missing something, please elaborate...",
       "parentUuid": "5d09d156_0183caae",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63dec98f_6c7cccca",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-10T10:11:41Z",
+      "side": 1,
+      "message": "From looking at the bug, I think we wanted to use -Wno-unused, but we couldn\u0027t because lots of code would fail to build with -Wno-unused. So we used -Wno-unused-variable instead. This is fine  by me either way.",
+      "parentUuid": "49732b40_c7876d0e",
       "range": {
         "startLine": 47,
         "startChar": 0,
