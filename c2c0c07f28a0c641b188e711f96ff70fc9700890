@@ -216,6 +216,30 @@
     },
     {
       "key": {
+        "uuid": "405d17b3_976b6485",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-10T16:17:27Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll add it (though it\u0027ll move us a bit from upstream pppol2tp plugin source code). Will send it in next patch series.\n\nShould I also remove unused files (openl2tp.c, l2tp_event.h and Makefile.linux), or we should keep the whole plugin/pppol2tp/ directory as it was copied from upstream?",
+      "parentUuid": "279e3adf_7d4324b6",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "082d2738_8b1d3d63",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
