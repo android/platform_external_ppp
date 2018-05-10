@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "39ae41ef_78900b58",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-10T16:19:53Z",
+      "side": 1,
+      "message": "Ok, in that case I\u0027d prefer to leave it as is, as I\u0027m not touching this code in my patch.",
+      "parentUuid": "63dec98f_6c7cccca",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "376abf5d65f7ce21c90740d68e751de8900ffeb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "68549f2d_6407bf26",
         "filename": "pppd/Android.mk",
         "patchSetId": 4
