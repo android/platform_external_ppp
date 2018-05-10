@@ -284,6 +284,8 @@ static void recv_config_pppol2tp(int mru,
 		error("Couldn't set PPP MRU: %m");
 }
 
+#ifndef __ANDROID__
+
 /*****************************************************************************
  * Snoop LCP message exchanges to capture negotiated ACCM values.
  * When asyncmap values have been seen from both sides, give the values to
@@ -430,6 +432,8 @@ static void pppol2tp_lcp_snoop_send(unsigned char *p, int len)
 	pppol2tp_lcp_snoop(p, len, 0);
 }
 
+#endif /* __ANDROID__ */
+
 /*****************************************************************************
  * Interface up/down events
  *****************************************************************************/
@@ -458,6 +462,7 @@ static void pppol2tp_ip_down(void *opaque, int arg)
 
 static void pppol2tp_check_options(void)
 {
+#ifndef __ANDROID__
 	/* Enable LCP snooping for ACCM options only for LNS */
 	if (pppol2tp_lns_mode) {
 		if ((pppol2tp_tunnel_id == 0) || (pppol2tp_session_id == 0)) {
@@ -472,6 +477,7 @@ static void pppol2tp_check_options(void)
 		snoop_recv_hook = pppol2tp_lcp_snoop_recv;
 		snoop_send_hook = pppol2tp_lcp_snoop_send;
 	}
+#endif
 }
 
 /* Called just before pppd exits.
