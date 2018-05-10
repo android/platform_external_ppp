@@ -240,6 +240,30 @@
     },
     {
       "key": {
+        "uuid": "39d19048_92cb46ae",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-10T16:23:07Z",
+      "side": 1,
+      "message": "If the whole files are unused, I think it\u0027s probably fine to keep them since it will be relatively easy to tell if they are used or not. It will also substantially reduce merge conflicts.",
+      "parentUuid": "405d17b3_976b6485",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "082d2738_8b1d3d63",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4
