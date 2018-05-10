@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "279e3adf_7d4324b6",
+        "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-10T10:07:25Z",
+      "side": 1,
+      "message": "Thanks for checking. Can we add an \"#ifndef ANDROID\" or similar to make it clear to everyone that this code will never be run? Otherwise, if in the future an upstream vulnerability is reported on this code, it will not be obvious that the code is never called on Android.",
+      "parentUuid": "35d47ad8_62909aba",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 2
+      },
+      "revId": "c2c0c07f28a0c641b188e711f96ff70fc9700890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "082d2738_8b1d3d63",
         "filename": "pppd/plugins/pppol2tp/pppol2tp.c",
         "patchSetId": 4

@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "d8e7a88b_0febb6e4",
+        "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-05-10T10:07:25Z",
+      "side": 1,
+      "message": "Elliott, aren\u0027t there already some projects that have mixed licenses in the same directory? The first one I found is external/error_prone/checkerframework, but there may be others. Failing that, if this plugin was in its own external project, would it make things better?",
+      "parentUuid": "92c55ee0_e28c874a",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 55
+      },
+      "revId": "5bc9bfc689ba81bde37440755f985ff38bf87ade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b469978b_8251ae95",
         "filename": "pppd/plugins/pppol2tp/l2tp_event.h",
         "patchSetId": 2
