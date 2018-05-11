@@ -22,6 +22,30 @@
       "revId": "e656c4b99344992797baef23bc31a4ae3da39c1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0ba30b3_0a2fca9c",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-05-11T16:52:23Z",
+      "side": 1,
+      "message": "It\u0027s more clear this way, yes. But let\u0027s leave it as is, because:\n 1. This patch is a revert, let\u0027s leave it atomic. And bisectability is a \"must\", IMHO\n 2. That change would deviate this code from upstream, which complicates rebasing. Ease of rebasing is more important than ease of reading, esp. because this code is not our code -- let\u0027s not tinker with it if it\u0027s not absolutely needed\n\nHope I\u0027m making sense here.",
+      "parentUuid": "8029aa8a_8dec9c41",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 368,
+        "endChar": 20
+      },
+      "revId": "e656c4b99344992797baef23bc31a4ae3da39c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
