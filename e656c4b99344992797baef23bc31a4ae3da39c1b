@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8029aa8a_8dec9c41",
+        "filename": "pppd/main.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-05-11T07:04:42Z",
+      "side": 1,
+      "message": "nit: progname \u003d argv[0]",
+      "range": {
+        "startLine": 368,
+        "startChar": 4,
+        "endLine": 368,
+        "endChar": 20
+      },
+      "revId": "e656c4b99344992797baef23bc31a4ae3da39c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
