@@ -77,12 +77,22 @@ cc_binary {
     ],
 
     ldflags: ["-rdynamic"],
-    required: ["pppol2tp-android"],
+    required: [
+        "pppol2tp-android",
+        "pppopptp-android",
+    ],
 }
 
 cc_library_shared {
     name: "pppol2tp-android",
     defaults: ["ppp_defaults"],
     srcs: ["plugins/pppol2tp-android/pppol2tp-android.c"],
+    allow_undefined_symbols: true,
+}
+
+cc_library_shared {
+    name: "pppopptp-android",
+    defaults: ["ppp_defaults"],
+    srcs: ["plugins/pppopptp-android/pppopptp-android.c"],
     allow_undefined_symbols: true,
 }
