@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd01919b_a27f812c",
+        "filename": "pppd/README.pppol2tp",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-06-08T13:17:01Z",
+      "side": 1,
+      "message": "Can/should we rename this plugin to something else, to avoid confusion with the other pppol2tp plugin? Maybe pppol2tp-android?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "8b242b11387658ee850089ef9ba54af036f5f553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
