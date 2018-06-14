@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bbf42e9_f9a5f83b",
+        "filename": "pppd/README.pppol2tp",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-14T15:10:56Z",
+      "side": 1,
+      "message": "remove \u0027next\u0027",
+      "range": {
+        "startLine": 11,
+        "startChar": 74,
+        "endLine": 11,
+        "endChar": 78
+      },
+      "revId": "403716727e9a69df374621d219879445f8b16b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfbeb83c_b0062bac",
+        "filename": "pppd/README.pppol2tp",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-14T15:10:56Z",
+      "side": 1,
+      "message": "\"In this respect,\"",
+      "range": {
+        "startLine": 23,
+        "startChar": 59,
+        "endLine": 23,
+        "endChar": 66
+      },
+      "revId": "403716727e9a69df374621d219879445f8b16b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8696f272_5fdec4cf",
+        "filename": "pppd/plugins/pppol2tp-android/pppol2tp-android.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-14T15:10:56Z",
+      "side": 1,
+      "message": "nit: 2018?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "403716727e9a69df374621d219879445f8b16b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce51da13_154978f2",
+        "filename": "pppd/plugins/pppol2tp-android/pppol2tp-android.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-14T15:10:56Z",
+      "side": 1,
+      "message": "This isn\u0027t a forward declaration, it\u0027s an actual declaration of a static in BSS :-)\n\nI\u0027d remove the comment altogether and insert a blank line between this declaration and the function prototype below.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 39
+      },
+      "revId": "403716727e9a69df374621d219879445f8b16b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
