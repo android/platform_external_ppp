@@ -22,6 +22,29 @@
       "revId": "e686d994042fcae24fe27b902f9644aea49cf8ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd33187f_65ddbab2",
+        "filename": "pppd/Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-14T15:20:24Z",
+      "side": 1,
+      "message": "Is this still necessary? Looks like pppd builds cleanly without it.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "e686d994042fcae24fe27b902f9644aea49cf8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
