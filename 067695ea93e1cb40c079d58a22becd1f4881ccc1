@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76a04974_0d607020",
+        "filename": "pppd/include/net/ppp_defs.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-14T14:20:03Z",
+      "side": 1,
+      "message": "I think this is unnecessary: if you move the entire __ANDROID__ block before line 41, then PPP_ADDRESS will be defined when we check for USING_UAPI.\n\nMoreover, regular Linux systems are the same of Android. Shouldn\u0027t the check be \u0027#if defined(__linux__)\u0027?",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 7
+      },
+      "revId": "067695ea93e1cb40c079d58a22becd1f4881ccc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
