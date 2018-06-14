@@ -22,6 +22,30 @@
       "revId": "067695ea93e1cb40c079d58a22becd1f4881ccc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51d80f94_ac0b38d0",
+        "filename": "pppd/include/net/ppp_defs.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-06-14T22:04:13Z",
+      "side": 1,
+      "message": "You are right. This is how it\u0027s done in sys-linux.c, so we just need to include linux/ppp_defs.h to have PPP_ADDRESS defined. Will do that in next patch-set.",
+      "parentUuid": "76a04974_0d607020",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 7
+      },
+      "revId": "067695ea93e1cb40c079d58a22becd1f4881ccc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
