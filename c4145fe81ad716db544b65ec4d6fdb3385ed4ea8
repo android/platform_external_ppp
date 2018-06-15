@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4aeed1f5_35064081",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1273909
+      },
+      "writtenOn": "2018-06-15T07:59:05Z",
+      "side": 1,
+      "message": "I read somewhere that subdirs is no longer used, but now I can\u0027t even find where it\u0027s documented.\n\nTry removing this file and see if I was right :-)",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "c4145fe81ad716db544b65ec4d6fdb3385ed4ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
