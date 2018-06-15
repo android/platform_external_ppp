@@ -46,6 +46,30 @@
       "revId": "c4145fe81ad716db544b65ec4d6fdb3385ed4ea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90612026_fc53d1ff",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-06-15T22:00:19Z",
+      "side": 1,
+      "message": "I see the same files in master:\n\n    https://android.googlesource.com/platform/external/clang/+/master/lib/Android.bp\n\nI suggest we keep it as is, and if the behavior was actually changed, it can be changed further during some mass cleanup.",
+      "parentUuid": "c794f371_3ea99893",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "c4145fe81ad716db544b65ec4d6fdb3385ed4ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
