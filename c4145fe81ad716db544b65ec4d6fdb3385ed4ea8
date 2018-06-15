@@ -22,6 +22,30 @@
       "revId": "c4145fe81ad716db544b65ec4d6fdb3385ed4ea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c794f371_3ea99893",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-06-15T16:58:05Z",
+      "side": 1,
+      "message": "Build fails without this file. Next error occurs:\n\n    ninja: error: unknown target \u0027MODULES-IN-external-ppp-pppd\u0027\n\nI\u0027ve checked it on my tree, which is O-MR1 (which I use for X15 boot). It\u0027ll take one more day for me to check it on AOSP master (repo sync and build takes too long on my laptop). Do you want me to do so, or we can leave it as is?",
+      "parentUuid": "4aeed1f5_35064081",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "c4145fe81ad716db544b65ec4d6fdb3385ed4ea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
