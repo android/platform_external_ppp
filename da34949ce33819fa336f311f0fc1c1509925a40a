@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf0a0ce3_b483fa4b",
+        "filename": "pppd/include/net/ppp_defs.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-07-05T03:38:50Z",
+      "side": 1,
+      "message": "This seems fine for Android purposes, but it looks strange that we need to modify upstream code in order to make USING_UAPI work. How does upstream use USING_UAPI? Do they require that all files that include ppp_defs.h manually define USING_UAPI and include \u003cnet/if.h\u003e? Should this change go upstream?\n\nOr is USING_UAPI an out-of-tree Android-only thing? If so, then should this be #ifdef ANDROID instead of #if defined(__linux__)?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
