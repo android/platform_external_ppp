@@ -22,6 +22,30 @@
       "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f314adf5_219e726f",
+        "filename": "pppd/include/net/ppp_defs.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-07-06T18:03:14Z",
+      "side": 1,
+      "message": "In upstream pppd, they keep include/linux/ headers inside of pppd project. In Android pppd we don\u0027t have those headers, and reuse UAPI version of those headers from bionic/libc/kernel/uapi/linux/ instead. That\u0027s why USING_UAPI was added to Android (yes, it\u0027s only Android-specific at this moment). In order to upstream that change it would take more efforts, because in upstream pppd project they probably want to keep compatibility with older kernel versions, where there wasn\u0027t user-space API available. So the answer is probably no, this change is not really needed in upstream (unless they are willing to drop compatibility for kernels before v3.6).\n\nAs for __linux__ instead of __ANDROID__: we discussed it with Bernie here:\n\n    https://android-review.googlesource.com/c/platform/external/ppp/+/704946\n\nand came to a conclusion that using __linux__ is a more generic way, because logically it should be done for all Linux systems (though I don\u0027t think upstream would be interested in this, but I can start a thread on pppd mailing list w.r.t. question).\n\nOverall, I\u0027d prefer for this change to stay as it is.",
+      "parentUuid": "cf0a0ce3_b483fa4b",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
