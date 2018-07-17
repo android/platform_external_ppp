@@ -46,6 +46,30 @@
       "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad8bc110_937867f5",
+        "filename": "pppd/include/net/ppp_defs.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2018-07-17T19:52:36Z",
+      "side": 1,
+      "message": "an alternative if we can\u0027t get this upstreamed would be to just add `-include linux/ppd_defs.h` and `-include net/if.h` to our cflags...",
+      "parentUuid": "f314adf5_219e726f",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
