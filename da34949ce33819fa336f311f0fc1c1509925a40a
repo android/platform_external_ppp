@@ -70,6 +70,30 @@
       "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7210246_836b835e",
+        "filename": "pppd/include/net/ppp_defs.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1131154
+      },
+      "writtenOn": "2018-07-17T21:44:30Z",
+      "side": 1,
+      "message": "Can we merge this as is? I will try to upstream that once patches are applied to AOSP. If upstream will not take it, I will send another patch, moving that include to CFLAGS. Does it sound reasonable?",
+      "parentUuid": "ad8bc110_937867f5",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "da34949ce33819fa336f311f0fc1c1509925a40a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
