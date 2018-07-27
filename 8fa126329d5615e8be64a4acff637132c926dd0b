@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03e040d3_b986f277",
+        "filename": "pppd/README.pppol2tp",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2018-07-27T03:09:37Z",
+      "side": 1,
+      "message": "Remove this \\",
+      "range": {
+        "startLine": 19,
+        "startChar": 76,
+        "endLine": 19,
+        "endChar": 77
+      },
+      "revId": "8fa126329d5615e8be64a4acff637132c926dd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
