@@ -56,10 +56,26 @@
 #endif /* __STDC__ */
 
 #ifdef PLUGIN
+#ifdef __ANDROID__
+
+/*
+ * In Android we can't load plugins from /system/lib{64}/pppd/, because
+ * Bionic loader only allows us to dlopen() libraries from /system/lib{64} root
+ * directory (as specified in ld.config.txt, see "default" linker namespace).
+ */
+#ifdef __LP64__
+#define _PATH_PLUGIN	"/system/lib64"
+#else  /* __LP64__ */
+#define _PATH_PLUGIN	"/system/lib"
+#endif /* __LP64__ */
+
+#else /* __ANDROID__ */
+
 #ifdef __STDC__
 #define _PATH_PLUGIN	DESTDIR "/lib/pppd/" VERSION
 #else /* __STDC__ */
 #define _PATH_PLUGIN	"/usr/lib/pppd"
 #endif /* __STDC__ */
 
+#endif /* __ANDROID__ */
 #endif /* PLUGIN */

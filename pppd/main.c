@@ -357,38 +357,15 @@ main(argc, argv)
      */
     tty_init();
 
-    progname = *argv;
-
 #if defined(__ANDROID__)
     {
         extern void pppox_init();
         pppox_init();
         privileged = 1;
     }
-    {
-        char *envargs = getenv("envargs");
-        if (envargs) {
-            int i;
-            /* Decode the arguments in-place and count the number of them.
-             * They were hex encoded using [A-P] instead of [0-9A-F]. */
-            for (argc = 0, i = 0; envargs[i] && envargs[i + 1]; i += 2) {
-                char c = ((envargs[i] - 'A') << 4) + (envargs[i + 1] - 'A');
-                if (c == 0) {
-                    ++argc;
-                }
-                envargs[i / 2 + 1] = c;
-            }
-            if (argc == 0 || (argv = malloc(sizeof(char *) * argc)) == NULL) {
-                fatal("Failed to parse envargs!");
-            }
-            for (envargs[0] = 0, i = 0; i < argc; ++envargs) {
-                if (envargs[0] == 0) {
-                    argv[i++] = &envargs[1];
-                }
-            }
-        }
-    }
 #endif
+
+    progname = *argv;
 
     /*
      * Parse, in order, the system options file, the user's options file,
