@@ -1,0 +1,8 @@
+Code-Review+2: Bernie Innocenti <codewiz@google.com>
+Verified+1: Alistair Strachan <astrachan@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Alistair Strachan <astrachan@google.com>
+Submitted-at: Thu, 30 Aug 2018 23:33:40 +0000
+Reviewed-on: https://android-review.googlesource.com/711706
+Project: platform/external/ppp
+Branch: refs/heads/master
