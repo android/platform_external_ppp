@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b3d83ab_5d8b1c44",
+        "filename": "OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000835
+      },
+      "writtenOn": "2019-01-10T00:07:04Z",
+      "side": 1,
+      "message": "Can we just include system/netd/OWNERS instead?",
+      "revId": "007ccb5a435698c88944dd150a1115ee66dd54eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
