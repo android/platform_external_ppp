@@ -27,8 +27,8 @@ cc_defaults {
     local_include_dirs: ["include"],
 }
 
-cc_binary {
-    name: "pppd",
+cc_library_static {
+    name: "libpppd",
     defaults: ["ppp_defaults"],
 
     srcs: [
@@ -56,6 +56,7 @@ cc_binary {
         "upap.c",
         "utils.c",
     ],
+    export_include_dirs:[".", "include"],
 
     // options.c:623:21: error: passing 'const char *' to parameter of
     // type 'char *' discards qualifiers.
@@ -83,6 +84,40 @@ cc_binary {
     ],
 }
 
+cc_binary {
+    name: "pppd",
+    defaults: ["ppp_defaults"],
+
+    srcs: [
+        "run.c",
+    ],
+
+    // options.c:623:21: error: passing 'const char *' to parameter of
+    // type 'char *' discards qualifiers.
+    // [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+    clang_cflags: ["-Wno-incompatible-pointer-types-discards-qualifiers"],
+
+    shared_libs: [
+        "libdl",
+        "liblog",
+        "libcutils",
+        "libcrypto",
+    ],
+    static_libs: ["libpppd"],
+
+    cflags: [
+        "-Wno-empty-body",
+        "-Wno-attributes",
+        "-Wno-sign-compare",
+        "-DPLUGIN",
+    ],
+
+    ldflags: ["-rdynamic"],
+    required: [
+        "pppol2tp-android",
+        "pppopptp-android",
+    ],
+}
 cc_library_shared {
     name: "pppol2tp-android",
     defaults: ["ppp_defaults"],
