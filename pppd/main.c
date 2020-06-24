@@ -259,7 +259,7 @@ void print_link_stats __P((void));
 
 extern	char	*ttyname __P((int));
 extern	char	*getlogin __P((void));
-int main __P((int, char *[]));
+int main_loop __P((int, char *[]));
 
 #ifdef ultrix
 #undef	O_NONBLOCK
@@ -306,7 +306,7 @@ struct protent *protocols[] = {
 #endif /* !defined(PPP_DRV_NAME) */
 
 int
-main(argc, argv)
+main_loop(argc, argv)
     int argc;
     char *argv[];
 {
