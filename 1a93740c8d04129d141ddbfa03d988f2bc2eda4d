@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b2ea69d7_a6ee5394",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-06-29T19:58:30Z",
+      "side": 1,
+      "message": "don\u0027t think it is, I just straight up got it from the original cc_binary. Will fix it",
+      "parentUuid": "f639d8d9_917c1be7",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 74
+      },
+      "revId": "1a93740c8d04129d141ddbfa03d988f2bc2eda4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48802ede_c5e1b9bf",
         "filename": "pppd/run.c",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a7ad81cd_188178b0",
+        "filename": "pppd/run.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-06-29T19:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48802ede_c5e1b9bf",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "1a93740c8d04129d141ddbfa03d988f2bc2eda4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24608186_7582d5a0",
         "filename": "pppd/run.h",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "1a93740c8d04129d141ddbfa03d988f2bc2eda4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "234e3f0f_82159fae",
+        "filename": "pppd/run.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-06-29T19:58:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24608186_7582d5a0",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "1a93740c8d04129d141ddbfa03d988f2bc2eda4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
