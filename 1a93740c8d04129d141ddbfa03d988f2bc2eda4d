@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "46caffc0_1cb1b133",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-06-29T21:56:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df353d79_ad416037",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 74
+      },
+      "revId": "1a93740c8d04129d141ddbfa03d988f2bc2eda4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48802ede_c5e1b9bf",
         "filename": "pppd/run.c",
         "patchSetId": 1
