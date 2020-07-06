@@ -16,6 +16,24 @@
       "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbf95552_d4d0550d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1221725
+      },
+      "writtenOn": "2020-07-06T23:28:04Z",
+      "side": 1,
+      "message": "Re ppp daemon getting deleted in S:\n\nWe do intend to, along with all the legacy VPN infrastructure. Almost all the VPN protocols provided by that infrastructure are considered insecure.\n\nRe support for 3 years:\n\nThis will not remove it from previous years\u0027 releases; it will only remove it from Android S+, including devices upgrading to S.",
+      "parentUuid": "ad8e5a81_ae604592",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
