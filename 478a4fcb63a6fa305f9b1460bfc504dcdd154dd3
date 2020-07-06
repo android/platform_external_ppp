@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad8e5a81_ae604592",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1100093
+      },
+      "writtenOn": "2020-07-06T22:15:54Z",
+      "side": 1,
+      "message": "\u003e Patch Set 3:\n\u003e \n\u003e (a) It looks like you could simply -Dmain_loop\u003dmain instead of adding the extra run.c, but whatever.\n\u003e \n\u003e (b) Nathan, Benedict \u0026 others: is ppp daemon getting deleted in S along with raccoon?\n\nShouldn\u0027t we still care about our down level customers?  We support android versions for 3 years?  Though it would be good to know if it is being deleted.",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
