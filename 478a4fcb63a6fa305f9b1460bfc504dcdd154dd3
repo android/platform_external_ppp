@@ -34,6 +34,24 @@
       "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "403d5c14_e680bb93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1100093
+      },
+      "writtenOn": "2020-07-07T00:55:47Z",
+      "side": 1,
+      "message": "The concern is that this is parsing packets in a privileged process, so in pi, qt, and rvc our customers will still have this code running and bugs in this code could still be High or Critical.  It would make sense to continue to fuzz it since the majority of our customers will not be on S for a few years.  \n\nWe would still require bug fixes in pppd even if it is removed from S (provided they where High+) so it would be useful to get the crashes internally rather than relying on external researchers.",
+      "parentUuid": "bbf95552_d4d0550d",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
