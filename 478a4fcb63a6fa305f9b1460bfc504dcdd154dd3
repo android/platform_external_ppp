@@ -69,6 +69,23 @@
       "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6439dac3_f9220e49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1221725
+      },
+      "writtenOn": "2020-07-09T23:42:37Z",
+      "side": 1,
+      "message": "I have no objections; Jasraj, can you confirm that the L2TP/PPTP VPNs still work with this patch? And perhaps add that to the \"Test\" line if it\u0027s already done?\n\nLooks safe, but i\u0027m not a C expert.",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
