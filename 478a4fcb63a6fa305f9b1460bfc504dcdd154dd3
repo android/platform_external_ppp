@@ -103,6 +103,24 @@
       "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d69ff296_b66b4670",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-07-10T20:43:00Z",
+      "side": 1,
+      "message": "Great idea.",
+      "parentUuid": "75616c32_1152b500",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
