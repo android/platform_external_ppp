@@ -86,6 +86,23 @@
       "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75616c32_1152b500",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1086523
+      },
+      "writtenOn": "2020-07-10T16:37:55Z",
+      "side": 1,
+      "message": "I wonder if this could be done in the library target above (libpppd), e.g.:\n\ncflags: [\"-Dmain\u003dmain_loop\"],\n\ninstead?  The benefit of doing this is that we would eliminate the pppd.c portion of patch (thus avoid diff with upstream).",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
