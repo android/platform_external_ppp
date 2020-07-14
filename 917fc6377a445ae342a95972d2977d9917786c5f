@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "75b58872_7564265a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2020-07-14T00:52:28Z",
+      "side": 1,
+      "message": "I\u0027m not sure how to resolve the double main.c inclusion problem.  Perhaps remove main.c from the lib and create a 2nd lib that depends on the first?  Or use a filegroup and not have bin -\u003e lib dependency at all?",
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08391b2e_5e3de38f",
         "filename": "pppd/Android.bp",
         "patchSetId": 5
@@ -19,6 +36,23 @@
         "endLine": 92,
         "endChar": 21
       },
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e5f641e_8156ee96",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2020-07-14T00:52:28Z",
+      "side": 1,
+      "message": "-Werror",
       "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
