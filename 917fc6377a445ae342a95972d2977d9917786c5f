@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08391b2e_5e3de38f",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2020-07-14T00:48:47Z",
+      "side": 1,
+      "message": "you seem to include main.c twice. here and via libpppd",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "016abfcc_d3dfe5cc",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1003247
+      },
+      "writtenOn": "2020-07-14T00:48:47Z",
+      "side": 1,
+      "message": "empty line after",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
