@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ccb23929_20a66e03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-07-14T02:18:18Z",
+      "side": 1,
+      "message": "I included main.c in the lib because the fuzzer builds on it but a main() function is still required for the bin, so including main.c twice seemed like the cleanest solution (the binary will have both main_loop and main, but I don\u0027t think it negatively affects it in any way?).\n\nI feel like creating one base lib without main.c, then a binary target (with main.c) and another lib with main.c (with -Dmain\u003dmain_loop) just complicates it more than required. I\u0027m willing to explore the filegroup approach if double including main.c is that much of a problem.",
+      "parentUuid": "75b58872_7564265a",
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08391b2e_5e3de38f",
         "filename": "pppd/Android.bp",
         "patchSetId": 5
