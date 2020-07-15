@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "771d469b_4bffdc33",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-07-15T00:39:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08391b2e_5e3de38f",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e5f641e_8156ee96",
         "filename": "pppd/Android.bp",
         "patchSetId": 5
@@ -71,6 +95,24 @@
       "writtenOn": "2020-07-14T00:52:28Z",
       "side": 1,
       "message": "-Werror",
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "754253b9_cbf056c4",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-07-15T00:39:21Z",
+      "side": 1,
+      "message": "Do we need -Werror? It\u0027s there in pppd_defaults",
+      "parentUuid": "0e5f641e_8156ee96",
       "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -97,6 +139,30 @@
       "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9389820_84b4e3bd",
+        "filename": "pppd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-07-15T00:39:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "016abfcc_d3dfe5cc",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "917fc6377a445ae342a95972d2977d9917786c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
