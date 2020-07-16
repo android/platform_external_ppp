@@ -1,0 +1,9 @@
+Code-Review+2: Maciej Żenczykowski <maze@google.com>
+Code-Review+2: Xin Li <delphij@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Lint+1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Submitted-by: Max Spector <mspector@google.com>
+Submitted-at: Thu, 16 Jul 2020 21:22:34 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/external/ppp/+/1349164
+Project: platform/external/ppp
+Branch: refs/heads/master
