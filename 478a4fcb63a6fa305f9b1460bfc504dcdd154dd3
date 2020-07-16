@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "f9e0c2a2_16509a7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1704169
+      },
+      "writtenOn": "2020-07-16T21:21:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "403d5c14_e680bb93",
+      "revId": "478a4fcb63a6fa305f9b1460bfc504dcdd154dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75616c32_1152b500",
         "filename": "pppd/Android.bp",
         "patchSetId": 4
