@@ -27,10 +27,8 @@ cc_defaults {
     local_include_dirs: ["include"],
 }
 
-cc_binary {
-    name: "pppd",
-    defaults: ["ppp_defaults"],
-
+filegroup {
+    name: "pppd-sources",
     srcs: [
         "auth.c",
         "ccp.c",
@@ -55,7 +53,17 @@ cc_binary {
         "tty.c",
         "upap.c",
         "utils.c",
+    ]
+}
+
+cc_library_static {
+    name: "libpppd",
+    defaults: ["ppp_defaults"],
+
+    srcs: [
+        ":pppd-sources"
     ],
+    export_include_dirs:[".", "include"],
 
     // options.c:623:21: error: passing 'const char *' to parameter of
     // type 'char *' discards qualifiers.
@@ -70,6 +78,7 @@ cc_binary {
     ],
 
     cflags: [
+        "-Dmain=main_loop",
         "-Wno-empty-body",
         "-Wno-attributes",
         "-Wno-sign-compare",
@@ -77,6 +86,31 @@ cc_binary {
     ],
 
     ldflags: ["-rdynamic"],
+    required: [
+        "pppol2tp-android",
+        "pppopptp-android",
+    ],
+}
+
+cc_binary {
+    name: "pppd",
+    defaults: ["ppp_defaults"],
+
+    srcs: [
+        ":pppd-sources"
+    ],
+
+    shared_libs: [
+        "libdl",
+        "liblog",
+        "libcutils",
+        "libcrypto",
+    ],
+
+    ldflags: ["-rdynamic"],
+
+    clang_cflags: ["-Wno-incompatible-pointer-types-discards-qualifiers"],
+
     required: [
         "pppol2tp-android",
         "pppopptp-android",
