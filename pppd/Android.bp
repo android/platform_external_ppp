@@ -60,6 +60,7 @@ cc_defaults {
         "-Wno-unused-parameter",
         "-Werror",
         "-Wno-pointer-sign",
+        "-DPLUGIN",
     ],
     local_include_dirs: ["include"],
 }
@@ -119,7 +120,6 @@ cc_library_static {
         "-Wno-empty-body",
         "-Wno-attributes",
         "-Wno-sign-compare",
-        "-DPLUGIN",
     ],
 
     ldflags: ["-rdynamic"],
