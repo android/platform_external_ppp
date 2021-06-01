@@ -152,6 +152,10 @@ cc_binary {
         "pppol2tp-android",
         "pppopptp-android",
     ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
 }
 
 cc_library_shared {
