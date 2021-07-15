@@ -311,9 +311,11 @@ vslprintf(buf, buflen, fmt, args)
 	    if (fillch == '0' && prec >= 0) {
 		n = prec;
 	    } else {
-		n = strlen((char *)p);
-		if (prec >= 0 && n > prec)
-		    n = prec;
+		if (prec >= 0) {
+		    n = strnlen((char *)p, prec);
+		} else {
+		    n = strlen((char *)p);
+		}
 	    }
 	    while (n > 0 && buflen > 0) {
 		c = *p++;
